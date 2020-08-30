@@ -11,7 +11,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="{{ get_url(path="style.css") }}" />
     </head>
-    <body class="party">
+    <body class="party" style>
+        <header role="banner" class="Site-head pad-top-500">
+            <div class="wrapper wrapper-lg">
+                <div class="Site-head__inner box-flex space-between align-center">
+                    <nav class="nav">
+                        <ul class="nav__list box-flex align-center md:space-before">
+                            <li class="nav__item">
+                                <a href=" {{get_url(path="/blog/") }}" aria-current="page" class="nav__item-hover" data-id="blog">
+                                    <span class="nav__item-hover-inner" data-hover="blog">
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="theme-switch-wrapper">
+                        🎉
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <div class="slider round"></div>
+                      </label>
+                      💀
+                    </div>
+                    
+                </div>
+            </div>
+        </header>
         <main id="main-content" tabindex="-1" class="writing">
             <div class="pad-before-xlg">
                 <div class="wrapper wrapper-sm pad-before">
@@ -56,14 +82,15 @@
                             <path
                             d="m0,0 q25,-50 100,100 L-25,100"
                             />
-                            <ellipse cx="15" cy="17" rx="12" ry="20" fill="var(--color-dark)" transform="rotate(-16)" />
+                            <ellipse cx="15" cy="17" rx="12" ry="20" fill="var(--color-death-face)" transform="rotate(-16)" />
                         </svg>
                     </header>
                 </div>
             </div>
             <div class="pad-around-xlg">
-                <img id="photo" src="{{ get_url(path="IMG_1355.png") }}" width="400px" class="professional-image" />
+                <img id="photo" src="{{ get_url(path="/images/IMG_1355.png") }}" width="400px" class="professional-image" />
             </div>
-        </main> 
+        </main>
+        <script defer="defer" src="{{ get_url(path="/scripts/main.js") }}" ></script>
     </body>
 </html>
