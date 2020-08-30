@@ -1,18 +1,17 @@
-{% extends "base.html" %}
+{% extends "content.html" %}
 {% block content %}
-    <h1 class="Intro__heading h3">{{ section.title }}</h1>
-    <div class="Intro__byline h6 sf-flow">
-        {{ section.content | safe }}
-    </div>                  
+
+            <h1 class="Intro__heading h3">{{ section.title }}</h1>
+            <div class="Intro__byline h6 sf-flow">
+                {{ section.content | safe }}
+            </div>                  
 {% endblock content %}
 
 {% block script %}
-<script defer="defer" src="{{ get_url(path="/scripts/main.js") | safe}}" ></script>
+<script defer="defer" src="{{ get_url(path="/scripts/photoswap.js") | safe}}" ></script>
 {% endblock script %}
 
 {% block flare %}
-<div class="pad-around-xlg">
-    <img id="photo" src="{{ get_url(path="/images/selfdeath.png") |safe }}" width="400px" class="professional-image" 
-    alt="A fine young person spreading Shaolin to the great people of Cadiz" />
-</div>
+<img id="photo" src="{{ get_url(path="/images/selfdeath.png") |safe }}" width="400px" class="professional-image" 
+alt="A fine young person spreading Shaolin to the great people of Cadiz" />
 {% endblock flare %}
