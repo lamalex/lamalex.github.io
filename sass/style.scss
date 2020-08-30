@@ -169,7 +169,7 @@ main {
 }
 
 .pad-before {
-    padding-top: calc(2rem + (4 - 2) * ((100vw - 20rem)/ (100 - 20)));
+    padding-top: calc(2rem + (4 - 2) * ((100vw - 20rem)/ (100 - 80)));
 }
 
 .pad-before-xlg {
@@ -279,7 +279,7 @@ main {
 @media screen and (min-width: 800px) {
     .Intro__svg {
         height: 250px;
-        top: -90px;
+        top: -10px;
         left: -100px;
     }
 }
@@ -287,8 +287,24 @@ main {
 .Intro__svg {
     position: absolute;
     height: 200px;
-    top: -58px;
+    top: -150px;
     left: -181px;
+    z-index: -1;
+}
+
+@media screen and (min-width: 800px) {
+    .Intro__psvg {
+        height: 250px;
+        top: -10px;
+        left: 100px;
+    }
+}
+
+.Intro__psvg {
+    position: absolute;
+    height: 200px;
+    top: -250px;
+    left: 60%;
     z-index: -1;
 }
 
@@ -296,7 +312,7 @@ svg {
     .Intro__svg {
         overflow-x: visible;
         overflow-y: visible;
-    }    
+    }
 }
 
 .h3, h1 {
