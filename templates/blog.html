@@ -3,7 +3,7 @@
     <h1 class="Intro__heading h3">{{ section.title }}</h1>
     <div class="Intro__byline h6 sf-flow">
         {% for post in section.pages %}
-            <a href="{{ post.permalink }}">{{ post.title }}</a>
+            <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2> 
         {% endfor %}
     </div>                  
 {% endblock content %}

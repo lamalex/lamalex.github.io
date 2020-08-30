@@ -13,3 +13,6 @@ build_search_index = false
 
 [extra]
 # Put all your custom variables here
+taxonomies = [
+    {name = "tags", lang = "en"}
+]

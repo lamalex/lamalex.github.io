@@ -9,9 +9,10 @@ I am a vegetarian and I like to 🚲 &nbsp; 🏃🏻‍♂️ and 🏋🏻‍♂
 I have three 🐕: <span class="doglist">
     <a href="#" class="image-rollover" data-filename="nacho.png">Nacho</a>, 
     <a href="#" class="image-rollover" data-filename="safia.png">Safia</a>, and 
-    <a href="#" class="image-rollover" data-filename="izzard.png">Izzard.</a>
-</span>
-**Black lives matter**. Reparations are necessary.
+    <a href="#" class="image-rollover" data-filename="izzard.png">Izzard</a>.
+    My partner is <a href="#" class="image-rollover" data-filename="scarlet.png">Scarlet</a>. 
+    **<a href="#" class="image-rollover" data-filename="emmetttill.jpg">Black lives matter</a>**</span>.
+    Reparations are necessary.
 
 My current research is using behavioral economics and mobile
 health technologies to help people lift weights safer.

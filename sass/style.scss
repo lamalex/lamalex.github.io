@@ -285,12 +285,12 @@ main {
     --color-selection-bg: var(--color-dark);
 }
 
-.writing {
+.content {
     --color-selection: var(--color-sea);
     --color-selection-bg: var(--color-dark-selection);
 }
 
-.writing {
+.content {
     .Intro:after {
         background-color: var(--color-sea);
     }
@@ -397,6 +397,13 @@ main {
 @media screen and (min-width: 800px) {
     .Intro__byline {
         margin-right: 2rem;
+    }
+}
+
+.Intro__byline {
+    a {
+        color: var(--color-rose);
+        text-decoration: none;
     }
 }
 
