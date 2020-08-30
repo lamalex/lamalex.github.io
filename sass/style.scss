@@ -315,6 +315,14 @@ svg {
     }
 }
 
+.professional-image {
+    position: relative;
+    float: right;
+    right: 120px;
+    bottom: 100px;
+    z-index: 0;
+}
+
 .h3, h1 {
     line-height: 1.2;
 }
