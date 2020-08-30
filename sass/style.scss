@@ -158,8 +158,6 @@ body {
         position: relative;
         border-top: none;
         display: block;
-        margin-left: auto;
-        right: 0px;
     }
 }
 
@@ -180,10 +178,9 @@ body {
 }
 
 .nav__item {
-    
-    padding: 1.1rem 0 .8rem 0;
     flex-shrink: 0;
 }
+
 @media screen and (min-width: 800px) {
     .nav a {
         margin-top: 0;
@@ -196,8 +193,8 @@ body {
     display: block;
     color: currentColor;
     text-decoration: none;
-    margin-top: 1rem;
     position: relative;
+    padding-right: 2em;
 }
 
 .nav__item a:hover {
@@ -451,8 +448,17 @@ svg {
     z-index: 0;
 }
 
+.doglist {
+}
+
+.doglist a {
+    color: inherit;
+    text-decoration: inherit;
+    cursor: text;
+}
+
 @media screen and (min-width: 48rem) {
-    .md\:space-before {
+    .md:space-before {
         justify-content: flex-end;
     }
 }
@@ -480,6 +486,7 @@ body, dd, dl, dt, figcaption, figure, h1, h2, h3, h4, li, ol, p, ul {
 ol[class], ul[class] {
     list-style: none;
 }
+
 
 .sf-flow>*+* {
     margin-top: 1em;
@@ -526,8 +533,6 @@ ol[class], ul[class] {
     max-width: 80rem;
     margin-left: auto;
     margin-right: auto;
-    padding-left: calc(1rem + (8 - 1) * ((100vw - 20rem)/ (100 - 20)));
-    padding-right: calc(1rem + (8 - 1) * ((100vw - 20rem)/ (100 - 20)));
 }
 
 .wrapper-lg {

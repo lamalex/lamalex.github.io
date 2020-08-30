@@ -18,11 +18,19 @@
                     <nav class="nav">
                         <ul class="nav__list box-flex align-center md:space-before">
                             <li class="nav__item">
-                                <a href=" {{get_url(path="/blog/") }}" aria-current="page" class="nav__item-hover" data-id="blog">
+                                <a href=" {{get_url(path="") }}" aria-current="page" class="nav__item-hover" data-id="blog">
                                     <span class="nav__item-hover-inner" data-hover="blog">
+                                        home
                                     </span>
                                 </a>
-                            </li>
+                            </li><!--
+                            <li class="nav__item">
+                                <a href=" {{get_url(path="/blog/") }}" aria-current="page" class="nav__item-hover" data-id="blog">
+                                    <span class="nav__item-hover-inner" data-hover="blog">
+                                        blog
+                                    </span>
+                                </a>
+                            </li>-->
                         </ul>
                     </nav>
                     
@@ -50,12 +58,12 @@
                                         I am a master's of computer science student at ODU.
                                         I study <em>big data, and distributed systems</em>.
                                         I am a vegetarian and I like to 🚲 &nbsp; 🏃🏻‍♂️ and 🏋🏻‍♂️.
-                                        I have three 🐕: <span style="text-decoration: underline;" onmouseout="">
-                                            <span onmouseover="">Nacho</span>, 
-                                            <span onmouseover="">Safia</span>, and 
-                                            <span onmouseover=""></span>Izzard.</span> 
-                                        </span>
-                                        <strong>Black lives matter.</strong> I believe strongly in reparations.
+                                        I have three 🐕: <span class="doglist">
+                                            <a href="#" class="image-rollover" data-filename="nacho.png">Nacho</a>, 
+                                            <a href="#" class="image-rollover" data-filename="safia.png">Safia</a>, and 
+                                            <a href="#" class="image-rollover" data-filename="izzard.png">Izzard.</a>
+                                        </span><strong>Black lives matter.</strong> Reparations are necessary.
+                                        
                                     </p>
                                     <p>
                                         My current research is using behavioral economics and mobile
@@ -88,7 +96,7 @@
                 </div>
             </div>
             <div class="pad-around-xlg">
-                <img id="photo" src="{{ get_url(path="/images/IMG_1355.png") }}" width="400px" class="professional-image" 
+                <img id="photo" src="{{ get_url(path="/images/selfdeath.png") }}" width="400px" class="professional-image" 
                 alt="A fine young person spreading Shaolin to the great people of Cadiz" />
             </div>
         </main>
