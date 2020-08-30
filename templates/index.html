@@ -3,13 +3,13 @@
     <head>
         <title>Alex Launi, UNO enthusiast</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta property="og:site_name" content="{{ get_url(path="") }}" />
-        <meta property="og:title" content="Home - {{ get_url(path="") }}" />
+        <meta property="og:site_name" content="{{ get_url(path="") }}" |safe/>
+        <meta property="og:title" content="Home - {{ get_url(path="") }}" |safe/>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ current_url }}" />
         <meta name="twitter:creator" content="@rhonda_jeremy" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" type="text/css" href="{{ get_url(path="style.css") }}" />
+        <link rel="stylesheet" type="text/css" href="{{ get_url(path="style.css") |safe }}" />
     </head>
     <body class="party" style>
         <header role="banner" class="Site-head pad-top-500">
@@ -18,7 +18,7 @@
                     <nav class="nav">
                         <ul class="nav__list box-flex align-center md:space-before">
                             <li class="nav__item">
-                                <a href=" {{get_url(path="") }}" aria-current="page" class="nav__item-hover" data-id="blog">
+                                <a href=" {{get_url(path="") |safe}}" aria-current="page" class="nav__item-hover" data-id="blog">
                                     <span class="nav__item-hover-inner" data-hover="blog">
                                         home
                                     </span>
@@ -96,10 +96,10 @@
                 </div>
             </div>
             <div class="pad-around-xlg">
-                <img id="photo" src="{{ get_url(path="/images/selfdeath.png") }}" width="400px" class="professional-image" 
+                <img id="photo" src="{{ get_url(path="/images/selfdeath.png") |safe }}" width="400px" class="professional-image" 
                 alt="A fine young person spreading Shaolin to the great people of Cadiz" />
             </div>
         </main>
-        <script defer="defer" src="{{ get_url(path="/scripts/main.js") }}" ></script>
+        <script defer="defer" src="{{ get_url(path="/scripts/main.js") | safe}}" ></script>
     </body>
 </html>
