@@ -12,7 +12,9 @@
     const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
     if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
+        document.body.className = ''
+        document.body.classList.add(currentTheme)
+        toggleSwitch.checked = currentTheme === 'death'
 
         if (currentTheme === 'dark') {
             toggleSwitch.checked = true;
