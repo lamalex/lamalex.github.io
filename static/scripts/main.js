@@ -28,7 +28,6 @@
     const images = document.querySelectorAll('.image-rollover');
     images.forEach(dog => {
         dog.addEventListener('pointerover', (image) => {
-            console.log(image)
             let photo =  document.getElementById('photo')
             photo.src = `/images/${image.srcElement.dataset.filename}`
         }, false)
