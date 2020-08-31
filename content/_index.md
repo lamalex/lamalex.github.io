@@ -3,14 +3,14 @@ title = "👋🏻 Hi, I'm Alex Launi"
 template = "index.html"
 +++
 
-I am a master's of computer science student at ODU.
-I study _big data, and distributed systems_.
+I am a master's of computer science student at Old Dominion University.
+I mainly study _big data, and distributed systems_.
 I am a vegetarian and I like to 🚲 &nbsp; 🏃🏻‍♂️ and 🏋🏻‍♂️.
 I have three 🐕: <span class="doglist">
     <a href="#" class="image-rollover" data-filename="nacho.png">Nacho</a>, 
     <a href="#" class="image-rollover" data-filename="safia.png">Safia</a>, and 
     <a href="#" class="image-rollover" data-filename="izzard.png">Izzard</a>.
-    My partner is <a href="#" class="image-rollover" data-filename="scarlet.png">Scarlet</a>. 
+    My partner <a href="#" class="image-rollover" data-filename="scarlet.png">Scarlet</a> is a chemist. 
     **<a href="#" class="image-rollover" data-filename="emmetttill.jpg">Black lives matter</a>**</span>.
     Reparations are necessary.
 
