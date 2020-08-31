@@ -1,16 +1,20 @@
 // Party or death mode
+function getActiveTheme() {
+    return document.body.classList.contains('party') ? 'party' : 'death'
+}
+
+function setSelfieForTheme(theme) {
+    const photo = document.getElementById('photo')
+    photo.src = `/images/self${theme}.png`
+}
+
 (function() {
     const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-
-    function setSelfieForTheme(theme) {
-        const photo = document.getElementById('photo')
-        photo.src = `/images/self${theme}.png`
-    }
 
     function switchTheme(e) {
         document.body.classList.toggle('party')
         document.body.classList.toggle('death')
-        let activeTheme = document.body.classList.contains('party') ? 'party' : 'death'
+        let activeTheme = getActiveTheme()
         localStorage.setItem('theme', activeTheme);
         setSelfieForTheme(activeTheme)
     }

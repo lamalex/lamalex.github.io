@@ -1,4 +1,3 @@
-
 //Dog image hover
 (function() {
     const images = document.querySelectorAll('.image-rollover');
@@ -11,7 +10,8 @@
 
     const doglist = document.querySelector('.doglist')
     doglist.addEventListener('pointerleave', () => {
-        let photo =  document.getElementById('photo')
-        photo.src = `/images/selfdeath.png`
+        const photo =  document.getElementById('photo')
+        const theme = getActiveTheme()
+        photo.src = `/images/self${theme}.png`
     }, false)
 })();
