@@ -95,8 +95,6 @@
     --color-dark-selection: rgba(64, 64, 64, 0.99);
     --color-death-cloak: var(--color-light);
     --color-death-face: var(--color-light);
-    
-    
 }
 
 .death {
@@ -149,6 +147,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
+    padding: 0 1em 0 1em;
 }
 
 @media screen and (min-width: 800px) {
