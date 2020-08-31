@@ -18,4 +18,4 @@ My current research is using behavioral economics and mobile
 health technologies to help people lift weights safer.
 
 I teach advanced submarine navigation for the US Navy, but I am actively looking for systems work!
-[Take a look at my cv!](https://lamalex.github.io/cv)
+[Take a look at my cv!](https://lamalex.github.io/cv), or in [pdf form](/alexlauni-resume.pdf)
