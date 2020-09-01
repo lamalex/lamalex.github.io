@@ -1,7 +1,7 @@
 {% extends "content.html" %}
 {% block content %}
     <h1 class="Intro__heading h3">{{ section.title }}</h1>
-    <div class="Intro__byline h6 sf-flow">
+    <div class="Intro__byline h6">
         {% for post in section.pages %}
             <h2><a href="{{ post.permalink }}">{{ post.title }}</a></h2> 
         {% endfor %}
