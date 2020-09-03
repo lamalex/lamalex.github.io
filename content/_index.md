@@ -11,11 +11,8 @@ I have three 🐕: <span class="doglist">
     <a href="#" class="image-rollover" data-filename="safia.png">Safia</a>, and 
     <a href="#" class="image-rollover" data-filename="izzard.png">Izzard</a>.
     My partner <a href="#" class="image-rollover" data-filename="scarlet.png">Scarlet</a> is a chemist. 
-    **<a href="#" class="image-rollover" data-filename="emmetttill.jpg">Black lives matter</a>**</span>.
-    Reparations are necessary.
-
-My current research is using behavioral economics and mobile
-health technologies to help people lift weights safer.
-
-I teach advanced submarine navigation for the US Navy, but I am actively looking for systems work!
-[Take a look at my cv](https://lamalex.github.io/cv)! Also available in [pdf form](/alexlauni-resume.pdf).
+**<a href="#" class="image-rollover" data-filename="emmetttill.jpg">Black lives matter</a>**</span>.
+Reparations are necessary. My current research is using behavioral economics and mobile
+health technologies to help people lift weights safer. I teach advanced submarine navigation for the US Navy,
+but I am actively looking for systems work!
+[Take a look at my cv](https://lamalex.github.io/cv) (in [pdf form](/alexlauni-resume.pdf))!
