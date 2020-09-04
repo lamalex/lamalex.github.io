@@ -50,13 +50,13 @@
             <div class="pad-before-xlg">
                 <div class="wrapper wrapper-sm pad-before">
                     {% block card %}{% endblock card %}
+                    <div class="pad-around-sm flare" >
+                        {% block flare %}{% endblock flare %}
+                    </div>
                 </div>
             </div>
-            <div class="pad-around-xlg">
-                {% block flare %}{% endblock flare %}
-            <div class="pad-around-xlg">
         </main>
-        {% block script %}{% endblock script %}
         <script defer="defer" src="{{ get_url(path="/scripts/main.js") | safe}}" ></script>
+        {% block script %}{% endblock script %}
     </body>
 </html>

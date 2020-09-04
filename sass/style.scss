@@ -377,12 +377,8 @@ svg {
     }
 }
 
-.professional-image {
-    position: relative;
+.flare {
     float: right;
-    right: 120px;
-    bottom: 100px;
-    z-index: 0;
 }
 
 .doglist {
@@ -435,6 +431,10 @@ ol[class], ul[class] {
     padding-top: calc(2rem + (4 - 2) * ((100vw - 20rem)/ (100 - 80)));
 }
 
+.pad-before-sm {
+    padding-top: calc(1rem + (4 - 2) * ((100vw - 20rem)/ (100 - 40)));
+}
+
 .pad-before-xlg {
     padding-top: calc(7.5rem + (10 - 7.5) * ((100vw - 20rem)/ (100 - 20)));
 }
@@ -446,6 +446,11 @@ ol[class], ul[class] {
 
 .pad-around-xlg {
     padding-top: calc(7.5rem + (10 - 7.5) * ((100vw - 20rem)/ (100 - 20)));
+    padding-bottom: calc(7.5rem + (10 - 7.5) * ((100vw - 20rem)/ (100 - 20)));
+}
+
+.pad-around-sm {
+    padding-top: calc(1rem + (4 - 2) * ((100vw - 20rem)/ (100 - 40)));
     padding-bottom: calc(7.5rem + (10 - 7.5) * ((100vw - 20rem)/ (100 - 20)));
 }
 
@@ -473,6 +478,9 @@ ol[class], ul[class] {
     display: flex;
 }
 
+.align-right {
+    margin-left: auto;
+}
 .align-center {
     align-items: center;
 }
