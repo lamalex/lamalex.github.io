@@ -8,7 +8,7 @@ tags = ["ssg", "Zola", "rust", "grad school", "travis", "svg"]
 
 Today I built this personal site. This is a task I've been putting off for a **long. time.**
 
-The first assignment for my _Data Science and Analytics_ class is to build a personal website with a short bio and a professional photograph (Coming, I swear), but I built this instead.
+The first assignment for my _Data Science and Analytics_ class is to build a personal website with a short bio and a professional photograph, but I built this instead.
 
 ### Static Site Generator
 
@@ -16,8 +16,11 @@ I knew that I wanted to use a static site generator. The requirements of the ass
 
 I've used static generators prior; my [cv](https://lamamlex.github.io/cv) is hosted on github using [Jekyll](https://jekyllrb.com). I've got nothing bad to say about jekyll. It works great for my CV, and if Zola wasn't written in [Rust 🦀](https://www.rust-lang.org) I probably would have, but wow-- Zola is **fast**. Very fast. `Zola build` on this site takes 20ms, whereas Jekyll on my CV takes 392ms. This isn't a dig on Jekyll, I'm not complaining about waiting 392ms, but Zola is almost imperceptibly fast.
 
-### SVG
+#### *update 9/11/2020*
+I have ported my [CV](/cv) over to be part of this site! Zola with blog posts, my landing page, and my cv builds in 83ms, over 4x faster than Jekyll.
 
+
+### SVG
 Knowing I was going to build this site, I spent $9.99 on a udemy course to learn a little bit about svg. I'd seen the amazing things that [some](Cassie.codes) [people](https://joshwcomeau.com) make with SVG and while I will probably never do that I wanted to have some fun with this. 
 
 The udemy course was an absolute waste of $9.99. I won't link to it as to not slander the creator, I'm sure some people found it very useful. It was highly rated, but it wasn't at the level I wanted.
@@ -123,4 +126,4 @@ function() {
 
 
 
-Now to take that professional photo...
+- [x] Now to take that professional photo (DONE!)
