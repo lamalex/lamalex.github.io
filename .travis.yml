@@ -6,7 +6,7 @@ addons:
     update: true
 
 before_install:
-  - sudo apt-get -y install libatk-bridge2.0-0
+  - sudo apt-get -y install libatk-bridge2.0-0 chromium-browser
 
 before_script:
   # Download and unzip the zola executable
@@ -16,6 +16,7 @@ before_script:
 script:
   - zola serve > /dev/null 2>&1 &
   - export ZOLA_PID=$!
+  - chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni_resume.pdf http://127.0.0.1:1111/cv
   - kill $ZOLA_PID
   - zola build
 
