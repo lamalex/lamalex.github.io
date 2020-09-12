@@ -1,6 +1,7 @@
 language: shell
 
 addons:
+  chrome: stable
   apt:
     update: true
 
