@@ -1,4 +1,6 @@
 language: shell
+os: linux
+dist: focal
 
 addons:
   chrome: stable
@@ -6,7 +8,7 @@ addons:
     update: true
 
 before_install:
-  - sudo apt-get -y install libatk-bridge2.0-0
+  - sudo apt-get -y install at-spi2-atk
 
 before_script:
   # Download and unzip the zola executable
