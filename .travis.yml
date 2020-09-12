@@ -2,6 +2,11 @@ language: shell
 
 addons:
   chrome: stable
+  apt:
+    update: true
+
+before_install:
+  - sudo apt-get -y install libatk-bridge2.0-0
 
 before_script:
   # Download and unzip the zola executable
