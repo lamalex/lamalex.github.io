@@ -7,7 +7,7 @@ addons:
     update: true
 
 before_install:
-  - sudo apt-get -y install at-spi2-atk
+  - sudo apt-get -y install libatk-bridge-2.0
 
 before_script:
   # Download and unzip the zola executable
