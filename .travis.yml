@@ -1,4 +1,4 @@
-language: minimal
+language: shell
 os: linux
 dist: focal
 virt: lxd
@@ -17,8 +17,8 @@ script:
 
 deploy:
   provider: pages
-  skip-cleanup: true
+  cleanup: false
   local_dir: public
-  github_token: $GH_TOKEN
+  token: $GH_TOKEN
   on:
     branch: main 
