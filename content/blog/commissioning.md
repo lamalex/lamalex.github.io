@@ -1,11 +1,7 @@
 +++
-
 title = "Commissioning this weblog 🍾"
-
 date = 2020-08-30
-
 tags = ["ssg", "Zola", "rust", "grad school", "travis", "svg"]
-
 +++
 
 ## Hooray! 🙌🏻

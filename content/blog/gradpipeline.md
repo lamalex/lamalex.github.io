@@ -1,11 +1,7 @@
 +++
-
 title = "Grad students should have a CI/CD pipeline"
-
 date = 2020-09-11
-
 tags = ["grad school", "CI", "CD", "CI/CD", "devops"]
-
 +++
 
 This semester I'm fortunate enough to take part in a pilot course where we will be developing curriculum for an undergrad software engineering course. This new course is meant as a follow on to Old Dominions required undergrad software engineering, CS350. In grad school I work on an iOS app written mostly in Swift with a C library generated from Matlab. We're working on building a system to help physical therapists monitor their patients progress through a wearable. My work focuses on building user interfaces that via game mechanics implicitly nudge users towards meeting certain range-of-motion goals. We're basically building a game in which your range-of-motion is the primary interface. I would say more, but we have multiple papers pending review!

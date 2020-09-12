@@ -32,7 +32,6 @@
             </div>
         </div>
         {% for segment in section.pages | sort(attribute="extra.weight") %}
-        {# {{ __tera_context }} #}
         <div class="wrapper {% if segment.extra.print == false %} noprint {% endif %} ">
             <div class="box sidebar">
                 {% if segment.extra.weight % 100 == 0 %}

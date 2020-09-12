@@ -1,6 +1,55 @@
 {% extends "base.html" %}
+{% block html %}
+<head>
+    <title>Alex Launi, UNO enthusiast</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="og:site_name" content="{{ get_url(path="") }}" |safe/>
+    <meta property="og:title" content="Home - {{ get_url(path="") }}" |safe/>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ current_url }}" />
+    <meta name="twitter:creator" content="@rhonda_jeremy" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="{{ get_url(path="style.css") |safe }}" />
+</head>
+<body class="party" style>
+    <header role="banner" class="Site-head pad-top-500">
+        <div class="wrapper wrapper-lg">
+            <div class="Site-head__inner box-flex space-between align-center">
+                <nav class="nav">
+                    <ul class="nav__list box-flex align-center md:space-before">
+                        <li class="nav__item">
+                            <a href=" {{get_url(path="") |safe}}" aria-current="page" class="nav__item-hover" data-id="blog">
+                                <span class="nav__item-hover-inner" data-hover="blog">
+                                    home
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav__item">
+                            <a href=" {{get_url(path="/blog/") }}" aria-current="page" class="nav__item-hover" data-id="blog">
+                                <span class="nav__item-hover-inner" data-hover="blog">
+                                    blog
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <div class="theme-switch-wrapper">
+                    🎉
+                    <label class="theme-switch" for="checkbox">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round"></div>
+                  </label>
+                  💀
+                </div>
 
-{% block card %}
+            </div>
+        </div>
+    </header>
+    <main id="main-content" tabindex="-1" class="content">
+        <div class="pad-before-xlg">
+            <div class="wrapper wrapper-sm pad-before">
+
 <header class="Intro pad-around">
     <div class="Intro__inner inner-wrapper">
         <div class="Intro__copy">
@@ -24,4 +73,14 @@
         <ellipse cx="15" cy="17" rx="12" ry="20" fill="var(--color-death-face)" transform="rotate(-16)" />
     </svg>
 </header>
-{% endblock card %}
+
+<div class="pad-around-sm flare" >
+    {% block flare %}{% endblock flare %}
+</div>
+</div>
+</div>
+</main>
+<script defer="defer" src="{{ get_url(path="/scripts/main.js") | safe}}" ></script>
+{% block script %}{% endblock script %}
+</body>
+{% endblock html %}
