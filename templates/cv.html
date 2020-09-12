@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block html %}
+    <head>
+        <meta charset="utf-8" />
+        <base target="_blank" />
+        <link rel="stylesheet" type="text/css" href="{{ get_url(path="cv.css") |safe }}" />
+        <title>{% if section.title %} {{ section.title }} | {% endif %} CV</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="box header">
+                <nav>
+                    <div class="shadowed">
+                        <h1 data-heading="{{ section.title }}">
+                            {{ section.title }}
+                        </h1>
+                    </div>
+                    
+                    <div class="contactinfo">
+                        <div class="contactinfo__inner">
+                            {% for item in section.extra.contact %}
+                            <span
+                                class="contact"
+                            >
+                                <a class="noprint" href="{{item.url}}">{{ item.name }}</a>
+                                <a class="printonly" href="{{item.url}}">{{ item.printname }}</a>
+                            </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        {% for segment in section.pages | sort(attribute="extra.weight") %}
+        <div class="wrapper {% if segment.extra.print == false %} noprint {% endif %} ">
+            <div class="box sidebar">
+                {% if segment.extra.weight % 100 == 0 %}
+                    <h2>{{ segment.title }}</h2>
+                {% else %}
+                    <h3><strong>{{ segment.title }}</strong></h3>
+                {% endif %} 
+                {% set desc = segment.extra.desc -%}
+                {% if desc != '' %}
+                    <h3>{{ desc }}</h3>
+                    {% endif %} {% set location = segment.extra.location -%} {% if location != '' %}
+                    <p>
+                        <code class="highlighter-rouge">{{ location }}</code>
+                    </p>
+                {% endif %} 
+                {% set gpa = segment.extra.gpa %} {% if gpa != '' %}
+                <p>
+                    <code class="highlighter-rouge">
+                        <em>GPA: {{ gpa }}</em>
+                    </code>
+                </p>
+                {% endif %}
+            </div>
+            <div class="box content">
+                {{ segment.content | safe }}
+            </div>
+            <div class="box timespan">
+                <code class="highlighter-rouge">{{ segment.extra.timespan }}</code>
+            </div>
+        </div>
+        {% endfor %}
+    </body>
+</html>
+{% endblock html %}
