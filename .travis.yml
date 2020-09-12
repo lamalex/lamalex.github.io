@@ -1,4 +1,10 @@
 language: minimal
+os: linux
+dist: focal
+virt: lxd
+
+addons:
+  chrome: stable
 
 before_script:
   # Download and unzip the zola executable
@@ -6,6 +12,7 @@ before_script:
   - curl -s -L https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
 
 script:
+  - zola serve > /dev/null 2>&1 &; ZOLA_PID=$!; google-chrome-stable --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni_resume.pdf http://127.0.0.1:1111/cv; kill $ZOLA_PID;
   - zola build
 
 deploy:
