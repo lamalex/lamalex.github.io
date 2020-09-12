@@ -1,7 +1,4 @@
 language: shell
-os: linux
-dist: focal
-virt: lxd
 
 addons:
   chrome: stable
