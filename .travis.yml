@@ -3,7 +3,6 @@ os: linux
 dist: focal
 
 addons:
-  chrome: stable
   apt:
     update: true
 
@@ -18,7 +17,6 @@ before_script:
 script:
   - zola serve > /dev/null 2>&1 &
   - export ZOLA_PID=$!
-  - google-chrome-stable --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni_resume.pdf http://127.0.0.1:1111/cv
   - kill $ZOLA_PID
   - zola build
 
