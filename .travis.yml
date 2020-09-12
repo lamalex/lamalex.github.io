@@ -21,7 +21,7 @@ script:
 
 deploy:
   provider: pages
-  cleanup: false
+  skip_cleanup: true
   local_dir: public
   token: $GH_TOKEN
   on:
