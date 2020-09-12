@@ -6,7 +6,7 @@ addons:
     update: true
 
 before_install:
-  - sudo apt-get -y install libatk-bridge2.0-0 chromium-browser
+  - sudo apt-get -y install chromium-browser
 
 before_script:
   # Download and unzip the zola executable
