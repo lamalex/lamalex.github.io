@@ -390,6 +390,10 @@ svg {
     cursor: text;
 }
 
+code {
+    overflow-wrap: break-word;
+}
+
 @media screen and (min-width: 48rem) {
     .md:space-before {
         justify-content: flex-end;
