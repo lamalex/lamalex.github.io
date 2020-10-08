@@ -19,7 +19,7 @@ script:
   - chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
   - kill $ZOLA_PID
   - zola build
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./spellcheck.sh; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then bash ./spellcheck.sh; fi'
 
 deploy:
   provider: pages
