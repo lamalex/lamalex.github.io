@@ -137,7 +137,7 @@ platform :ios do
 end
 ```
 
-This little diddy does checks out signing certificates, builds the specified configuration, and uploads to TestFlight! It also attaches the commit message off of the latest commit as a changelog so recipients can get an idea of what changed. When I approve a PR for merging I merge/squash and rewrite this commit message to be meaningful for an end user.
+This little ditty does checks out signing certificates, builds the specified configuration, and uploads to TestFlight! It also attaches the commit message off of the latest commit as a changelog so recipients can get an idea of what changed. When I approve a PR for merging I merge/squash and rewrite this commit message to be meaningful for an end user.
 
 ​    
 ## The result
