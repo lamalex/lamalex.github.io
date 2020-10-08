@@ -14,6 +14,6 @@ function spellcheck_content() {
 spelling_errors=$(spellcheck_content)
 json=$(jq -n --arg msg "$spelling_errors" '{body: $msg}')
 
-curl -H  "Authorization: token ${GITHUB_TOKEN}" -X POST \
+curl -H  "Authorization: token ${GH_TOKEN}" -X POST \
         -d "$json" \
         "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments"
