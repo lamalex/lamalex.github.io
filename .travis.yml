@@ -1,4 +1,5 @@
 language: shell
+dist: focal
 
 addons:
   apt:
