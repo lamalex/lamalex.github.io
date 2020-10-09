@@ -1,7 +1,7 @@
 +++
 title = "Auto-generating my pdf resume with Travis CI"
 date = 2020-09-12
-tags = ["ssg", "Zola", "grad school", "travis"]
+tags = ["Travis", "career", "SSG"]
 draft = false
 +++
 
@@ -29,8 +29,8 @@ step to print a pdf from local development, updating a static pdf file, and then
 cumbersome and error prone, fortunately it was fully automatable.
 
 ## So here's what I do!
-This site is built as a static site using [zola](www.getzola.org), and then deployed to [GitHub pages](https://pages.github.com)
-via [Travis CI](https://travis-ci.com/). Deploying a static site with zola is straight forward and 
+This site is built as a static site using [Zola](www.getzola.org), and then deployed to [GitHub pages](https://pages.github.com)
+via [Travis CI](https://travis-ci.com/). Deploying a static site with Zola is straight forward and 
 [documented](https://www.getzola.org/documentation/deployment/github-pages/#travis-ci).
 
 #### Generating a print pdf automatically
@@ -48,12 +48,12 @@ We could use the url of our live site, but that has some drawbacks.
 How about we spin up a development server inside of our build, and hit that local endpoint. `zola serve` to the rescue.
 ```bash
 $ zola serve > /dev/null 2>&1 & # we send stdout and stderr to null to keep our CI logs clean
-$ export ZOLA_PID=$! # Save the newly spawned PID so we can kill zola after we get our pdf
+$ export ZOLA_PID=$! # Save the newly spawned PID so we can kill Zola after we get our pdf
 $ chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header \
     --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/ # Oh, word?
 $ kill $ZOLA_PID # end Zola so we can build and publish
 ```
-🥚-cellent. What does this look like in our travis config, `.travis.yml`?
+🥚-cellent. What does this look like in our Travis config, `.travis.yml`?
 ```yaml
 script:
   - zola serve > /dev/null 2>&1 &
@@ -63,7 +63,7 @@ script:
   - zola build
 ```
 Why are we using chromium-browser and not google chrome? I don't have a good answer for why, but when I was setting this build pipeline up
-I ran into an error on travis.
+I ran into an error on Travis.
 ```bash
 $ google-chrome-stable --headless
 164/usr/bin/google-chrome-stable: error while loading shared libraries: libatk-bridge-2.0.so.0: cannot open shared object file: No such file or directory
