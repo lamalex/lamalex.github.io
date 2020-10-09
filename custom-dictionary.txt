@@ -32,7 +32,6 @@ CitiBike
 GIS
 OULED
 ACM
-ACM-W
 Jolicloud
 bootcamp
 PostgreSQL
@@ -42,4 +41,3 @@ Dockerized
 Launi
 printname
 LinkedIn
-
