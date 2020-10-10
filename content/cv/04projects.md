@@ -9,6 +9,10 @@ location = ""
 gpa = ""
 timespan = ""
 +++
+* __MonarchBot__ __\|__ [GitHub](https://github.com/lamalex/monarch-bot) __\|__ `Rust, CI/CD, Mailgun`
+* Discord bot for ODU student email verification
+* Protected ODU CS students from cyber-abuse by verifying members of community Discord server have a valid @odu.edu email address.
+ 
 * __Environmental Chemistry__ __\|__ [GitHub](https://github.com/lamalex/chem-data) __\|__ `R, Python, React, Bash, HPC`
 * Assist Hatcher Geochemistry lab group with various data analysis and visualization scripts.
 
@@ -18,6 +22,6 @@ timespan = ""
 * __Gnome Do__ __\|__ [Launchpad](https://launchpad.net/do) __\|__ `C#, Mono, Bzr`
 * Core maintainer of popular open-source application built on .NET.
 
-* __Moodle Dockerization__ __\|__ [GitHub](https://github.com/lamalex/moodle-docker-compose) __\|__ `Docker, Postgresql, Memcached`
+* __Moodle Dockerization__ __\|__ [GitHub](https://github.com/lamalex/moodle-docker-compose) __\|__ `Docker, PostgreSQL, Memcached`
 * Host, and administer a Moodle instance for my wonderful mom, a high school biology teacher.
 * Dockerized a large PHP applications which serves over 100 high school students.
