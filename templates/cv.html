@@ -44,22 +44,23 @@
                     <h3>{{ desc }}</h3>
                     {% endif %} {% set location = segment.extra.location -%} {% if location != '' %}
                     <p>
-                        <code class="highlighter-rouge">{{ location }}</code>
+                        <code>{{ location }}</code>
                     </p>
                 {% endif %} 
                 {% set gpa = segment.extra.gpa %} {% if gpa != '' %}
                 <p>
-                    <code class="highlighter-rouge">
+                    <code>
                         <em>GPA: {{ gpa }}</em>
                     </code>
                 </p>
                 {% endif %}
+                <code class="printonly">{{ segment.extra.timespan }}</code>
             </div>
             <div class="box content">
                 {{ segment.content | safe }}
             </div>
             <div class="box timespan">
-                <code class="highlighter-rouge">{{ segment.extra.timespan }}</code>
+                <p>{{ segment.extra.timespan }}</p>
             </div>
         </div>
         {% endfor %}
