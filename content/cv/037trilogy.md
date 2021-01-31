@@ -3,7 +3,7 @@ title = "Trilogy Education Service"
 
 [extra]
 print = true
-weight = 302
+weight = 308
 desc = ""
 location = ""
 gpa = ""

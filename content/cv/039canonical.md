@@ -3,7 +3,7 @@ title = "Canonical Ltd"
 
 [extra]
 print = true
-weight = 303
+weight = 309
 desc = ""
 location = ""
 gpa = ""
