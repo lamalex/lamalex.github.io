@@ -20,6 +20,6 @@ timespan = "August 2014 - Present"
   
   * Direct supervisor for division of 5-7 sailors during overseas deployments; responsible for safe undersea navigation and all preventative and corrective maintenance for ship's critical navigation and interior communication systems.
   
-  * Trained 10 personnel through initial ascension qualifications through senior qualifcations. 100% advancement to Second Class Petty Officer for sailors who were assigned as mentees.
+  * Trained 10 personnel from initial ascension qualifications through senior qualifications. 100% advancement to Second Class Petty Officer for sailors who were assigned as mentees.
   
   * Awarded: Navy & Marine Corps Achievement Medal (6), Good Conduct Medal (2), 2018 USS San Francisco Junior Sailor of the Year. 
