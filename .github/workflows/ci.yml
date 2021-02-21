@@ -6,13 +6,13 @@ jobs:
     if: ${{ github.ref != 'refs/heads/master' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Build PDF CV
         run: |
           sudo snap install --edge zola
           zola serve 2>&1 &
           export ZOLA_PID=$!
-          google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
+          google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/notreal
           kill $ZOLA_PID
           cat static/alexlauni-resume.pdf
           
