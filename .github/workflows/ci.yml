@@ -2,19 +2,21 @@ name: GitHub Pages CI
 on: [pull_request, push]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: ${{ github.ref != 'refs/heads/master' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: install zola
+      - name: Install Zola
         run: sudo snap install --edge zola
       - name: Build PDF CV
         run: |
           zola serve &
           export ZOLA_PID=$!
           sleep 5
-          google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://localhost:1111/notreal
+          curl localhost:1111
+          curl localhost:1111/cv
+          google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://localhost:1111/cv
           kill $ZOLA_PID
           cat static/alexlauni-resume.pdf
           ls static
