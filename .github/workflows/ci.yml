@@ -14,7 +14,8 @@ jobs:
           export ZOLA_PID=$!
           google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
           kill $ZOLA_PID
-
+          cat static/alexlauni-resume.pdf
+          
   build_and_deploy:
     name: Build site with Zola and deploy
     runs-on: ubuntu-latest
