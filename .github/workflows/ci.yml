@@ -15,7 +15,7 @@ jobs:
   build_and_deploy:
     name: Build site with Zola and deploy
     runs-on: ubuntu-latest
-    # if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: verify
     steps:
     - uses: actions/checkout@master
