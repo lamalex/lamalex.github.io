@@ -1,5 +1,15 @@
 name: GitHub Pages CI
 on: [pull_request, push]
+
+anchors:
+  compile_pdf_resume:
+    - name: Build PDF CV
+      run: |
+        sudo snap install --edge zola
+        zola serve > /dev/null 2>&1 &
+        export ZOLA_PID=$!
+        google-chrome --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
+        kill $ZOLA_PID
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -7,13 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Build PDF CV
-        run: |
-          sudo snap install --edge zola
-          zola serve > /dev/null 2>&1 &
-          export ZOLA_PID=$!
-          google-chrome --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
-          kill $ZOLA_PID
+      - *compile_pdf_resume
+        
 
   build_and_deploy:
     name: Build site with Zola and deploy
