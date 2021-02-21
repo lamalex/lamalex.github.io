@@ -7,14 +7,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: install zola
+        run: sudo snap install --edge zola
       - name: Build PDF CV
         run: |
-          sudo snap install --edge zola
-          zola serve 2>&1 &
+          zola serve &
           export ZOLA_PID=$!
-          google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/notreal
+          sleep 5
+          google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://localhost:1111/notreal
           kill $ZOLA_PID
           cat static/alexlauni-resume.pdf
+          ls static
           
   build_and_deploy:
     name: Build site with Zola and deploy
