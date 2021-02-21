@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://launi.me/sitemap.xml
