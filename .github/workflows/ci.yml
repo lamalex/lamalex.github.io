@@ -13,7 +13,8 @@ jobs:
         run: |
           zola serve &
           export ZOLA_PID=$!
-          curl localhost:1111/cv > /dev/null
+          sleep 5
+          curl localhost:1111/cv &> /dev/null
           google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://localhost:1111/cv
           kill $ZOLA_PID
           cat static/alexlauni-resume.pdf
