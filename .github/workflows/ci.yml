@@ -22,12 +22,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Build PDF CV
-        run: |
-          sudo snap install --edge zola
-          zola serve > /dev/null 2>&1 &
-          export ZOLA_PID=$!
-          google-chrome --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
-          kill $ZOLA_PID
+      run: |
+        sudo snap install --edge zola
+        zola serve > /dev/null 2>&1 &
+        export ZOLA_PID=$!
+        google-chrome --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
+        kill $ZOLA_PID
     - name: Zola Deploy Action by @shalzz
       uses: shalzz/zola-deploy-action@master
       env:
