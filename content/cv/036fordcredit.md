@@ -9,4 +9,5 @@ location = ""
 gpa = ""
 timespan = "February 2021 - Present"
 +++
-* __Full-Stack Engineer__ __\|__ `Java EE, SQL, JavaScript, React, HTML, CSS`
+* __Full-Stack Engineer__ __\|__ `Java EE, Spring Boot SQL, JavaScript, Vue, HTML, CSS`
+  * Digital Marketing platform engineer building ML based user experiences
