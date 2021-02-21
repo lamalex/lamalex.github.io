@@ -26,6 +26,8 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     steps:
     - uses: actions/checkout@master
+    - name: Install Zola
+      run: sudo snap install --edge zola
     - name: Build PDF CV
       run: |
         zola serve &
