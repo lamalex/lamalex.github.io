@@ -14,7 +14,7 @@ The first assignment for my _Data Science and Analytics_ class is to build a per
 
 I knew that I wanted to use a static site generator. The requirements of the assignment included hosting your simple site on the university server, or via GitHub pages (`spoiler alert: I went with github`).
 
-I've used static generators prior; my [cv](https://launi.me/cv) is hosted on github using [Jekyll](https://jekyllrb.com). I've got nothing bad to say about jekyll. It works great for my CV, and if Zola wasn't written in [Rust 🦀](https://www.rust-lang.org) I probably would have, but wow-- Zola is **fast**. Very fast. `Zola build` on this site takes 20ms, whereas Jekyll on my CV takes 392ms. This isn't a dig on Jekyll, I'm not complaining about waiting 392ms, but Zola is almost imperceptibly fast.
+I've used static generators prior; my [cv](/cv) is hosted on github using [Jekyll](https://jekyllrb.com). I've got nothing bad to say about jekyll. It works great for my CV, and if Zola wasn't written in [Rust 🦀](https://www.rust-lang.org) I probably would have, but wow-- Zola is **fast**. Very fast. `Zola build` on this site takes 20ms, whereas Jekyll on my CV takes 392ms. This isn't a dig on Jekyll, I'm not complaining about waiting 392ms, but Zola is almost imperceptibly fast.
 
 #### *update 9/11/2020*
 I have ported my [CV](/cv) over to be part of this site! Zola with blog posts, my landing page, and my cv builds in 83ms, over 4x faster than Jekyll.
