@@ -112,6 +112,7 @@ body {
 ol,
 ul {
     list-style: none;
+    margin-bottom: 0.25em;
 }
 blockquote,
 q {
@@ -224,7 +225,7 @@ grid {
 
 .wrapper {
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 0px;
     grid-template-columns: 18% auto 15%;
     grid-template-areas:
         '....... header  header'
@@ -314,10 +315,6 @@ a {
 
 a:hover {
     color: #39f;
-}
-
-ul {
-    margin-bottom: 1.5em;
 }
 
 li ul {
