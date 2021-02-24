@@ -1,6 +1,8 @@
 +++
 title = "👋🏻 Hi, I'm Alex Launi"
 template = "index.html"
+[extra]
+preloads=["/images/selfparty.png", "/images/selfparty.png", "/images/scarlet.png", "/images/emmetttill.jpg", "/images/nacho.png", "/images/safia.png","/images/izzard.png"]
 +++
 
 I am a master's of computer science student at Old Dominion University.
