@@ -1,69 +1,73 @@
 {% extends "base.html" %}
 {% block html %}
-    <head>
-        <meta charset="utf-8" />
-        <base target="_blank" />
-        <link rel="stylesheet" type="text/css" href="{{ get_url(path="cv.css") |safe }}" />
-        <title>{% if section.title %} {{ section.title }} | {% endif %} CV</title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="box header">
-                <nav>
-                    <div class="shadowed">
-                        <h1 data-heading="{{ section.title }}">
-                            {{ section.title }}
-                        </h1>
+
+<head>
+    <meta charset="utf-8" />
+    <base target="_blank" />
+    <link rel="stylesheet" type="text/css" href="{{ get_url(path=" cv.css") |safe }}" />
+    <title>{% if section.title %} {{ section.title }} | {% endif %} CV</title>
+
+    <link rel="preload" as="image" href="DEEZNUTS.png">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box header">
+            <nav>
+                <div class="shadowed">
+                    <h1 data-heading="{{ section.title }}">
+                        {{ section.title }}
+                    </h1>
+                </div>
+
+                <div class="contactinfo">
+                    <div class="contactinfo__inner">
+                        {% for item in section.extra.contact %}
+                        <span class="contact">
+                            <a class="noprint" href="{{item.url}}">{{ item.name }}</a>
+                            <a class="printonly" href="{{item.url}}">{{ item.printname }}</a>
+                        </span>
+                        {% endfor %}
                     </div>
-                    
-                    <div class="contactinfo">
-                        <div class="contactinfo__inner">
-                            {% for item in section.extra.contact %}
-                            <span
-                                class="contact"
-                            >
-                                <a class="noprint" href="{{item.url}}">{{ item.name }}</a>
-                                <a class="printonly" href="{{item.url}}">{{ item.printname }}</a>
-                            </span>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </div>
-        {% for segment in section.pages | sort(attribute="extra.weight") %}
-        <div class="wrapper {% if segment.extra.print == false %} noprint {% endif %} ">
-            <div class="box sidebar">
-                {% if segment.extra.weight % 100 == 0 %}
-                    <h2>{{ segment.title }}</h2>
-                {% else %}
-                    <h3><strong>{{ segment.title }}</strong></h3>
-                {% endif %} 
-                {% set desc = segment.extra.desc -%}
-                {% if desc != '' %}
-                    <h3>{{ desc }}</h3>
-                    {% endif %} {% set location = segment.extra.location -%} {% if location != '' %}
-                    <p>
-                        <code>{{ location }}</code>
-                    </p>
-                {% endif %} 
-                {% set gpa = segment.extra.gpa %} {% if gpa != '' %}
-                <p>
-                    <code>
+    </div>
+    {% for segment in section.pages | sort(attribute="extra.weight") %}
+    <div class="wrapper {% if segment.extra.print == false %} noprint {% endif %} ">
+        <div class="box sidebar">
+            {% if segment.extra.weight % 100 == 0 %}
+            <h2>{{ segment.title }}</h2>
+            {% else %}
+            <h3><strong>{{ segment.title }}</strong></h3>
+            {% endif %}
+            {% set desc = segment.extra.desc -%}
+            {% if desc != '' %}
+            <h3>{{ desc }}</h3>
+            {% endif %} {% set location = segment.extra.location -%} {% if location != '' %}
+            <p>
+                <code>{{ location }}</code>
+            </p>
+            {% endif %}
+            {% set gpa = segment.extra.gpa %} {% if gpa != '' %}
+            <p>
+                <code>
                         <em>GPA: {{ gpa }}</em>
                     </code>
-                </p>
-                {% endif %}
-                <code class="printonly">{{ segment.extra.timespan }}</code>
-            </div>
-            <div class="box content">
-                {{ segment.content | safe }}
-            </div>
-            <div class="box timespan">
-                <p>{{ segment.extra.timespan }}</p>
-            </div>
+            </p>
+            {% endif %}
+            <code class="printonly">{{ segment.extra.timespan }}</code>
         </div>
-        {% endfor %}
-    </body>
+        <div class="box content">
+            {{ segment.content | safe }}
+        </div>
+        <div class="box timespan">
+            <p>{{ segment.extra.timespan }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</body>
+
 </html>
 {% endblock html %}
