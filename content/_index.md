@@ -11,7 +11,7 @@ I am a vegetarian and I like to 🚲 &nbsp; 🏃🏻‍♂️ and 🏋🏻‍♂
 I have three 🐕: <span class="doglist">
     <a href="#" class="image-rollover" data-filename="nacho.png">Nacho</a>, 
     <a href="#" class="image-rollover" data-filename="safia.png">Safia</a>, and 
-    <a href="#" class="image-rollover" data-filename="izzard.png">Izzard</a>.
+    <a href="#" class="image-rollover" data-filename="izzard.png">Gritty</a>.
     My partner <a href="#" class="image-rollover" data-filename="scarlet.png">Scarlet</a> is a chemist. 
 **<a href="#" class="image-rollover" data-filename="emmetttill.jpg">Black lives matter</a>**</span>.
 Reparations are necessary. My current research is using behavioral economics and mobile
