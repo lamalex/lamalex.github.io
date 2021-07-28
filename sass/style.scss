@@ -333,7 +333,8 @@ main {
 .Intro__byline {
     a {
         color: var(--color-rose);
-        text-decoration: none;
+        text-decoration: underline;
+        text-decoration-style: dashed;
     }
 }
 
@@ -386,7 +387,7 @@ svg {
 
 .doglist a {
     color: inherit;
-    text-decoration: inherit;
+    text-decoration: none;
     cursor: text;
 }
 
