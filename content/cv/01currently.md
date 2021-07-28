@@ -9,4 +9,4 @@ location = ""
 gpa = ""
 timespan = ""
 +++
-Finishing my M.S. at [Old Dominion University](http://cs.odu.edu), and starting a full-stack engineering role with Ford Credit!
+Mostly just being a really nice person, but also developing reliable, tested, and legible software as part of the consumer product group at Ford Motor Company Credit.

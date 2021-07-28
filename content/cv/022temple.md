@@ -3,7 +3,7 @@ title = "B.S. Computer Science"
 
 [extra]
 print = true
-weight = 202
+weight = 302
 desc = "Temple University"
 location = "Philadelphia, PA"
 gpa = "3.2"
