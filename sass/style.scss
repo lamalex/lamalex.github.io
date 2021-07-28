@@ -36,6 +36,7 @@
     --color-dark-selection: rgba(64, 64, 64, 0.99);
     --color-death-cloak: var(--color-light);
     --color-death-face: var(--color-light);
+    --color-gritty: hsla(12, 87%, 43%, 1);
 }
 
 .death {
@@ -62,6 +63,7 @@
     --color-dark-selection: rgba(250, 250, 250, 0.99);
     --color-death-cloak: black;
     --color-death-face: hsl(205.18, 100%, 4.5%);
+    --color-gritty: hsla(12, 87%, 58%, 1);
 }
 
 body {
@@ -368,7 +370,7 @@ main {
     top: -250px;
     left: 60%;
     z-index: -1;
-    fill: var(--color-death-cloak)
+    fill: var(--color-death-cloak);
 }
 
 svg {
@@ -382,7 +384,8 @@ svg {
     float: right;
 }
 
-.doglist {
+.doglist > .gritty {
+    color: var(--color-gritty);
 }
 
 .doglist a {
