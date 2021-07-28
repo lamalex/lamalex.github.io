@@ -5,8 +5,8 @@
 <head>
     <title>Alex Launi, UNO enthusiast</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta property="og:site_name" content="https:&#x2F;&#x2F;launi.me" |safe />
-    <meta property="og:title" content="Home - https:&#x2F;&#x2F;launi.me" |safe />
+    <meta property="og:site_name" content="https://launi.me" |safe />
+    <meta property="og:title" content="Home - https://launi.me" |safe />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https:&#x2F;&#x2F;launi.me&#x2F;blog&#x2F;commissioning&#x2F;" />
     <meta name="twitter:creator" content="@rhonda_jeremy" />
@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="https:&#x2F;&#x2F;launi.me&#x2F;blog" aria-current="page" class="nav__item-hover"
+                            <a href="https://launi.me/blog" aria-current="page" class="nav__item-hover"
                                 data-id="blog">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     blog
@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="https:&#x2F;&#x2F;launi.me&#x2F;cv" aria-current="page" class="nav__item-hover"
+                            <a href="https://launi.me/cv" aria-current="page" class="nav__item-hover"
                                 data-id="cv">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     cv
@@ -126,50 +126,49 @@
 <p>We made this cute 'lil face (modified to work with dark mode)! And it's fine, but it wasn't what I was looking for. That was a bust, but it did give me some basic knowledge and understanding of how SVG works that I leveraged for the silhouette illustration of the reaper.</p>
 <h3 id="travis-ci">Travis-CI</h3>
 <p>Since I use <a href="https://www.travis-ci.com">Travis</a> for my other projects' build pipelines it made sense enough to use it again. The Zola documentation has a tutorial for setting up a continuous deployment build with Travis, but I wasn't having success with just following the tutorial. I've used Travis enough that I decided just to &quot;do the work myself&quot; and came up with this <code>.travis.yml</code></p>
-<pre style="background-color:#fafafa;">
-<code class="language-yaml" data-lang="yaml"><span style="color:#399ee6;">language</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">minimal
+<pre data-lang="yaml" class="language-yaml "><code class="language-yaml" data-lang="yaml">language: minimal
 
-before_script</span><span style="color:#61676ccc;">:
-  </span><span style="font-style:italic;color:#abb0b6;"># Download and unzip the zola executable
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">curl -s -L https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
+before_script:
+  # Download and unzip the zola executable
+  - curl -s -L https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
 
-script</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">zola build
+script:
+  - zola build
 
-deploy</span><span style="color:#61676ccc;">:
-  </span><span style="color:#399ee6;">provider</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">pages
-  skip-cleanup</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">true
-  </span><span style="color:#399ee6;">local_dir</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">public
-  github_token</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">$GH_TOKEN
-  </span><span style="color:#ff8f40;">on</span><span style="color:#61676ccc;">:
-    </span><span style="color:#399ee6;">branch</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">master
-</span></code></pre><h3 id="light-mode-dark-mode-party-mode-cold-reality-mode-mode">Light mode/Dark mode --&gt; Party mode/cold-reality-mode mode</h3>
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: public
+  github_token: $GH_TOKEN
+  on:
+    branch: master
+</code></pre>
+<h3 id="light-mode-dark-mode-party-mode-cold-reality-mode-mode">Light mode/Dark mode --&gt; Party mode/cold-reality-mode mode</h3>
 <p>Admittedly all of the hard work of designing a color scheme was done for me. I ape'd a significant amount of the markup for this site from <a href="https://cassie.codes">cassie.codes</a>, but I implemented my own simple mode switcher from <em>party mode</em> to <em>cold-dark-reality-mode</em>.</p>
-<pre style="background-color:#fafafa;">
-<code class="language-javascript" data-lang="javascript"><span style="color:#fa6e32;">function</span><span style="color:#61676c;">() {
-    </span><span style="color:#fa6e32;">const </span><span style="color:#61676c;">toggleSwitch </span><span style="color:#ed9366;">= </span><span style="color:#61676c;">document</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">querySelector</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;.theme-switch input[type=&quot;checkbox&quot;]&#39;</span><span style="color:#61676c;">)</span><span style="color:#61676ccc;">;
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">function() {
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
 
-    </span><span style="color:#fa6e32;">function </span><span style="color:#f29718;">switchTheme</span><span style="color:#61676c;">(</span><span style="color:#ff8f40;">e</span><span style="color:#61676c;">) {
-        document</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">body</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">classList</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">toggle</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;party&#39;</span><span style="color:#61676c;">)
-        document</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">body</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">classList</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">toggle</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;death&#39;</span><span style="color:#61676c;">)
-        localStorage</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">setItem</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;theme&#39;</span><span style="color:#61676ccc;">, </span><span style="color:#61676c;">document</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">body</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">classList</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">contains</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;party&#39;</span><span style="color:#61676c;">) </span><span style="color:#ed9366;">? </span><span style="color:#86b300;">&#39;party&#39; </span><span style="color:#ed9366;">: </span><span style="color:#86b300;">&#39;death&#39;</span><span style="color:#61676c;">)</span><span style="color:#61676ccc;">; </span><span style="font-style:italic;color:#abb0b6;">//add this
-    </span><span style="color:#61676c;">}
+    function switchTheme(e) {
+        document.body.classList.toggle('party')
+        document.body.classList.toggle('death')
+        localStorage.setItem('theme', document.body.classList.contains('party') ? 'party' : 'death'); //add this
+    }
 
-    toggleSwitch</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">addEventListener</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;change&#39;</span><span style="color:#61676ccc;">, </span><span style="color:#61676c;">switchTheme</span><span style="color:#61676ccc;">, </span><span style="color:#ff8f40;">false</span><span style="color:#61676c;">)</span><span style="color:#61676ccc;">;
+    toggleSwitch.addEventListener('change', switchTheme, false);
 
-    </span><span style="color:#fa6e32;">const </span><span style="color:#61676c;">currentTheme </span><span style="color:#ed9366;">= </span><span style="color:#61676c;">localStorage</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getItem</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;theme&#39;</span><span style="color:#61676c;">) </span><span style="color:#ed9366;">? </span><span style="color:#61676c;">localStorage</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">getItem</span><span style="color:#61676c;">(</span><span style="color:#86b300;">&#39;theme&#39;</span><span style="color:#61676c;">) </span><span style="color:#ed9366;">: </span><span style="color:#ff8f40;">null</span><span style="color:#61676ccc;">;
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
-    </span><span style="color:#fa6e32;">if </span><span style="color:#61676c;">(currentTheme) {
-        document</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">body</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">className </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">&#39;&#39;
-        </span><span style="color:#61676c;">document</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">body</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">classList</span><span style="color:#ed9366;">.</span><span style="color:#f07171;">add</span><span style="color:#61676c;">(currentTheme)
-        toggleSwitch</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">checked </span><span style="color:#ed9366;">= </span><span style="color:#61676c;">currentTheme </span><span style="color:#ed9366;">=== </span><span style="color:#86b300;">&#39;death&#39;
+    if (currentTheme) {
+        document.body.className = ''
+        document.body.classList.add(currentTheme)
+        toggleSwitch.checked = currentTheme === 'death'
 
-        </span><span style="color:#fa6e32;">if </span><span style="color:#61676c;">(currentTheme </span><span style="color:#ed9366;">=== </span><span style="color:#86b300;">&#39;dark&#39;</span><span style="color:#61676c;">) {
-            toggleSwitch</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">checked </span><span style="color:#ed9366;">= </span><span style="color:#ff8f40;">true</span><span style="color:#61676ccc;">;
-        </span><span style="color:#61676c;">}
+        if (currentTheme === 'dark') {
+            toggleSwitch.checked = true;
+        }
     }
 }
-</span></code></pre>
+</code></pre>
 <ul>
 <li><input disabled="" type="checkbox" checked=""/>
 Now to take that professional photo (DONE!)</li>

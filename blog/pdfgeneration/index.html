@@ -5,8 +5,8 @@
 <head>
     <title>Alex Launi, UNO enthusiast</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta property="og:site_name" content="https:&#x2F;&#x2F;launi.me" |safe />
-    <meta property="og:title" content="Home - https:&#x2F;&#x2F;launi.me" |safe />
+    <meta property="og:site_name" content="https://launi.me" |safe />
+    <meta property="og:title" content="Home - https://launi.me" |safe />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https:&#x2F;&#x2F;launi.me&#x2F;blog&#x2F;pdfgeneration&#x2F;" />
     <meta name="twitter:creator" content="@rhonda_jeremy" />
@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="https:&#x2F;&#x2F;launi.me&#x2F;blog" aria-current="page" class="nav__item-hover"
+                            <a href="https://launi.me/blog" aria-current="page" class="nav__item-hover"
                                 data-id="blog">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     blog
@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="https:&#x2F;&#x2F;launi.me&#x2F;cv" aria-current="page" class="nav__item-hover"
+                            <a href="https://launi.me/cv" aria-current="page" class="nav__item-hover"
                                 data-id="cv">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     cv
@@ -74,16 +74,15 @@
         <p>My cv is written to be both web and printer friendly, but the styling for print, 
 and the styling for web are not the same. Styling for print and screen can easily
 be handled via css media queries:</p>
-<pre style="background-color:#fafafa;">
-<code class="language-css" data-lang="css"><span style="color:#399ee6;">h1 </span><span style="color:#61676c;">{
-    </span><span style="color:#55b4d4;">color</span><span style="color:#61676ccc;">: </span><span style="font-style:italic;color:#ed9366;">mediumaquamarine</span><span style="color:#61676ccc;">;
-</span><span style="color:#61676c;">}
-</span><span style="color:#fa6e32;">@media </span><span style="font-style:italic;color:#ed9366;">print </span><span style="color:#61676c;">{
-    </span><span style="color:#399ee6;">h1 </span><span style="color:#61676c;">{
-        </span><span style="color:#55b4d4;">color</span><span style="color:#61676ccc;">: </span><span style="font-style:italic;color:#ed9366;">teal</span><span style="color:#61676ccc;">;
-    </span><span style="color:#61676c;">}
+<pre data-lang="css" class="language-css "><code class="language-css" data-lang="css">h1 {
+    color: mediumaquamarine;
 }
-</span></code></pre>
+@media print {
+    h1 {
+        color: teal;
+    }
+}
+</code></pre>
 <p>Now you have a different color &lt;h1&gt; element styles for when your page is printed or rendered on the web!
 You can use css media queries for lots of things, but that's beyond the intended scope of this post.
 <br />
@@ -101,9 +100,8 @@ via <a href="https://travis-ci.com/">Travis CI</a>. Deploying a static site with
 <p>At some time in the past Chrome added a headless mode for testing purposes. It brings all of the web features, and rendering engine
 provided by Chromium to environments which might not have a display (like a continuous integration server!). We can exploit this to
 script our way to a printed pdf.</p>
-<pre style="background-color:#fafafa;">
-<code class="language-bash" data-lang="bash"><span style="color:#f29718;">$</span><span style="color:#61676c;"> chromium-browser</span><span style="color:#ff8f40;"> --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf</span><span style="color:#ed9366;">=&lt;</span><span style="color:#61676c;">output</span><span style="color:#ed9366;">&gt; &lt;</span><span style="color:#61676c;">url endpoint</span><span style="color:#ed9366;">&gt;
-</span></code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">$ chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=<output> <url endpoint>
+</code></pre>
 <p>Super! So we just need to update <code>&lt;output&gt;</code> to the directory where we serve static content from, but what is our url endpoint?
 We could use the url of our live site, but that has some drawbacks.</p>
 <ul>
@@ -115,58 +113,54 @@ How about we spin up a development server inside of our build, and hit that loca
 </ul>
 </li>
 </ul>
-<pre style="background-color:#fafafa;">
-<code class="language-bash" data-lang="bash"><span style="color:#f29718;">$</span><span style="color:#61676c;"> zola serve </span><span style="color:#ed9366;">&gt;</span><span style="color:#61676c;"> /dev/null </span><span style="color:#ff8f40;">2</span><span style="color:#ed9366;">&gt;&amp;</span><span style="color:#ff8f40;">1 </span><span style="color:#ed9366;">&amp; </span><span style="font-style:italic;color:#abb0b6;"># we send stdout and stderr to null to keep our CI logs clean
-</span><span style="color:#f29718;">$</span><span style="color:#61676c;"> export ZOLA_PID=$</span><span style="font-style:italic;color:#55b4d4;">! </span><span style="font-style:italic;color:#abb0b6;"># Save the newly spawned PID so we can kill Zola after we get our pdf
-</span><span style="color:#61676c;">$ chromium-browser</span><span style="color:#ff8f40;"> --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header </span><span style="color:#61676ccc;">\
-</span><span style="color:#ff8f40;">    --print-to-pdf</span><span style="color:#ed9366;">=</span><span style="color:#61676c;">static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/ </span><span style="font-style:italic;color:#abb0b6;"># Oh, word?
-</span><span style="color:#61676c;">$ kill $ZOLA_PID </span><span style="font-style:italic;color:#abb0b6;"># end Zola so we can build and publish
-</span></code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">$ zola serve > /dev/null 2>&1 & # we send stdout and stderr to null to keep our CI logs clean
+$ export ZOLA_PID=$! # Save the newly spawned PID so we can kill Zola after we get our pdf
+$ chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header \
+    --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/ # Oh, word?
+$ kill $ZOLA_PID # end Zola so we can build and publish
+</code></pre>
 <p>🥚-cellent. What does this look like in our Travis config, <code>.travis.yml</code>?</p>
-<pre style="background-color:#fafafa;">
-<code class="language-yaml" data-lang="yaml"><span style="color:#399ee6;">script</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#86b300;">zola serve &gt; /dev/null 2&gt;&amp;1 &amp;
-  </span><span style="color:#61676c;">- </span><span style="color:#86b300;">export ZOLA_PID=$!
-  </span><span style="color:#61676c;">- </span><span style="color:#86b300;">chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
-  </span><span style="color:#61676c;">- </span><span style="color:#86b300;">kill $ZOLA_PID
-  </span><span style="color:#61676c;">- </span><span style="color:#86b300;">zola build
-</span></code></pre>
+<pre data-lang="yaml" class="language-yaml "><code class="language-yaml" data-lang="yaml">script:
+  - zola serve > /dev/null 2>&1 &
+  - export ZOLA_PID=$!
+  - chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
+  - kill $ZOLA_PID
+  - zola build
+</code></pre>
 <p>Why are we using chromium-browser and not google chrome? I don't have a good answer for why, but when I was setting this build pipeline up
 I ran into an error on Travis.</p>
-<pre style="background-color:#fafafa;">
-<code class="language-bash" data-lang="bash"><span style="color:#f29718;">$</span><span style="color:#61676c;"> google-chrome-stable</span><span style="color:#ff8f40;"> --headless
-</span><span style="color:#f29718;">164/usr/bin/google-chrome-stable:</span><span style="color:#61676c;"> error while loading shared libraries: libatk-bridge-2.0.so.0: cannot open shared object file: No such file or directory
-</span><span style="color:#f29718;">165The</span><span style="color:#61676c;"> command </span><span style="color:#86b300;">&quot;google-chrome-stable --headless&quot;</span><span style="color:#61676c;"> exited with 127.
-</span></code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">$ google-chrome-stable --headless
+164/usr/bin/google-chrome-stable: error while loading shared libraries: libatk-bridge-2.0.so.0: cannot open shared object file: No such file or directory
+165The command "google-chrome-stable --headless" exited with 127.
+</code></pre>
 <p>Using chromium with some additional installed dependencies fixed the issue. When all is said and done, my <code>.travis.yml</code> looks like this:</p>
-<pre style="background-color:#fafafa;">
-<code class="language-yaml" data-lang="yaml"><span style="color:#399ee6;">language</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">shell
+<pre data-lang="yaml" class="language-yaml "><code class="language-yaml" data-lang="yaml">language: shell
 
-addons</span><span style="color:#61676ccc;">:
-  </span><span style="color:#399ee6;">apt</span><span style="color:#61676ccc;">:
-    </span><span style="color:#399ee6;">update</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">true
+addons:
+  apt:
+    update: true
 
-</span><span style="color:#399ee6;">before_install</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">sudo apt-get -y install ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils chromium-browser
+before_install:
+  - sudo apt-get -y install ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils chromium-browser
   
-before_script</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">curl -s -L https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
+before_script:
+  - curl -s -L https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
 
-script</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">zola serve &gt; /dev/null 2&gt;&amp;1 &amp;
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">export ZOLA_PID=$!
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">kill $ZOLA_PID
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">zola build
+script:
+  - zola serve > /dev/null 2>&1 &
+  - export ZOLA_PID=$!
+  - chromium-browser --headless --disable-gpu --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://127.0.0.1:1111/cv/
+  - kill $ZOLA_PID
+  - zola build
 
-deploy</span><span style="color:#61676ccc;">:
-  </span><span style="color:#399ee6;">provider</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">pages
-  skip_cleanup</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">true
-  </span><span style="color:#399ee6;">local_dir</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">public
-  token</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">$GH_TOKEN
-  </span><span style="color:#ff8f40;">on</span><span style="color:#61676ccc;">:
-    </span><span style="color:#399ee6;">branch</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">main 
-</span></code></pre>
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: public
+  token: $GH_TOKEN
+  on:
+    branch: main 
+</code></pre>
 <p>And now you have a static site with an automatically updated pdf copy of your resume. Good luck in your job search!</p>
 
     </div> 

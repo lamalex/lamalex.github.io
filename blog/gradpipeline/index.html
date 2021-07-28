@@ -5,8 +5,8 @@
 <head>
     <title>Alex Launi, UNO enthusiast</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta property="og:site_name" content="https:&#x2F;&#x2F;launi.me" |safe />
-    <meta property="og:title" content="Home - https:&#x2F;&#x2F;launi.me" |safe />
+    <meta property="og:site_name" content="https://launi.me" |safe />
+    <meta property="og:title" content="Home - https://launi.me" |safe />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https:&#x2F;&#x2F;launi.me&#x2F;blog&#x2F;gradpipeline&#x2F;" />
     <meta name="twitter:creator" content="@rhonda_jeremy" />
@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="https:&#x2F;&#x2F;launi.me&#x2F;blog" aria-current="page" class="nav__item-hover"
+                            <a href="https://launi.me/blog" aria-current="page" class="nav__item-hover"
                                 data-id="blog">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     blog
@@ -39,7 +39,7 @@
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="https:&#x2F;&#x2F;launi.me&#x2F;cv" aria-current="page" class="nav__item-hover"
+                            <a href="https://launi.me/cv" aria-current="page" class="nav__item-hover"
                                 data-id="cv">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     cv
@@ -82,57 +82,54 @@
 <p>​</p>
 <h2 id="what-i-built">What I built</h2>
 <p>If you're a student, you have access to the <a href="https://education.github.com/pack">GitHub Student Developer pack</a>. This is a wonderful resource for student developers that gives you access to a plethora of industry tools for <strong>free</strong>. For example, a free GitHub pro account, and <a href="https://education.travis-ci.com">Travis CI</a> gives you free unlimited private builds, 2 years of a pro datadog account, mailgun, and a ton more! It's an awesome program. Travis is really easy to use. You just connect your github account and give it <code>repo</code> scope so it can access your private repositories. Then you write a small .yml configuration. Mine looks like this:</p>
-<pre style="background-color:#fafafa;">
-<code class="language-yaml" data-lang="yaml"><span style="color:#399ee6;">language</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">swift
-os</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">osx
-cache</span><span style="color:#61676ccc;">:
-  </span><span style="color:#399ee6;">bundler</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">true
-  </span><span style="color:#399ee6;">cocoapods</span><span style="color:#61676ccc;">: </span><span style="color:#ff8f40;">true
-</span><span style="color:#399ee6;">osx_image</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">xcode11.5
-install</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">bundle install
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">pod install
-script</span><span style="color:#61676ccc;">:
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">bundle exec danger
-  </span><span style="color:#61676c;">- </span><span style="color:#399ee6;">bundle exec fastlane test
-  </span><span style="color:#61676c;">- </span><span style="color:#86b300;">&#39;if [ &quot;$TRAVIS_PULL_REQUEST&quot; = &quot;false&quot; ]; then bash ./scripts/travis-deploy.sh; fi&#39;
-</span><span style="color:#399ee6;">xcode_project</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">liftright.xcworkspace </span><span style="font-style:italic;color:#abb0b6;"># path to your xcodeproj folder
-</span><span style="color:#399ee6;">xcode_scheme</span><span style="color:#61676ccc;">: </span><span style="color:#399ee6;">liftrightTests
-xcode_destination</span><span style="color:#61676ccc;">: </span><span style="color:#86b300;">platform=iOS Simulator,OS=13.0,name=iPhone 11 Pro, iPhone 8
-</span></code></pre>
+<pre data-lang="yaml" class="language-yaml "><code class="language-yaml" data-lang="yaml">language: swift
+os:
+  - osx
+cache:
+  bundler: true
+  cocoapods: true
+osx_image: xcode11.5
+install:
+  - bundle install
+  - pod install
+script:
+  - bundle exec danger
+  - bundle exec fastlane test
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/travis-deploy.sh; fi'
+xcode_project: liftright.xcworkspace # path to your xcodeproj folder
+xcode_scheme: liftrightTests
+xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone 11 Pro, iPhone 8
+</code></pre>
 <p>This will run danger (which lints and checks for obviously wrong things in a pull request), then runs my test suite, and finally if not a pull request branch runs a script to deploy straight to TestFlight, where my PI will get a notification on her phone that I made an update. This script is really straight forward. </p>
-<pre style="background-color:#fafafa;">
-<code class="language-bash" data-lang="bash"><span style="font-style:italic;color:#abb0b6;">#!/bin/bash
-</span><span style="color:#f07171;">set </span><span style="color:#ff8f40;">-ev
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">#!/bin/bash
+set -ev
 
-</span><span style="font-style:italic;color:#abb0b6;"># We only want to push from trunk.
+# We only want to push from trunk.
 # Did you know emojis are valid in git branch names?
-</span><span style="color:#61676c;">if </span><span style="color:#fa6e32;">[ </span><span style="color:#86b300;">&quot;$</span><span style="color:#61676c;">{TRAVIS_BRANCH}</span><span style="color:#86b300;">&quot;</span><span style="color:#61676c;"> != </span><span style="color:#86b300;">&quot;game-ui-🚀&quot; </span><span style="color:#fa6e32;">]</span><span style="color:#ed9366;">; </span><span style="color:#fa6e32;">then
-    </span><span style="color:#f07171;">exit</span><span style="color:#61676c;"> 0
-</span><span style="color:#fa6e32;">fi
+if [ "${TRAVIS_BRANCH}" != "game-ui-🚀" ]; then
+    exit 0
+fi
 
-</span><span style="font-style:italic;color:#abb0b6;"># We bump the build number to today&#39;s date so we can be sure
+# We bump the build number to today's date so we can be sure
 # that we supercede the newest version in TestFlight.
-</span><span style="color:#61676c;">buildNumber=$(</span><span style="color:#f29718;">date</span><span style="color:#61676c;"> +</span><span style="color:#86b300;">&quot;%Y.%m.%d.%H%M%S&quot;</span><span style="color:#61676c;">)
-</span><span style="color:#f29718;">/usr/libexec/PlistBuddy</span><span style="color:#ff8f40;"> -c </span><span style="color:#86b300;">&quot;Set :CFBundleVersion $</span><span style="color:#61676c;">buildNumber</span><span style="color:#86b300;">&quot;</span><span style="color:#61676c;"> liftright/Info.plist
+buildNumber=$(date +"%Y.%m.%d.%H%M%S")
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" liftright/Info.plist
 
-</span><span style="font-style:italic;color:#abb0b6;"># We have 2 deploy targets. Staging is for development builds.
+# We have 2 deploy targets. Staging is for development builds.
 # Extra debugging might be enabled, 
 # data is logged to a more volatile server, etc.
-# If the commit has been tagged as &quot;release&quot; 
+# If the commit has been tagged as "release" 
 # then it gets pushed to the server for our actual users
-</span><span style="color:#61676c;">if </span><span style="color:#fa6e32;">[ </span><span style="color:#86b300;">&quot;$</span><span style="color:#61676c;">{TRAVIS_TAG}</span><span style="color:#86b300;">&quot;</span><span style="color:#61676c;"> = </span><span style="color:#86b300;">&quot;release&quot; </span><span style="color:#fa6e32;">]</span><span style="color:#ed9366;">; </span><span style="color:#fa6e32;">then
-    </span><span style="color:#f29718;">bundle</span><span style="color:#61676c;"> exec fastlane release
-</span><span style="color:#fa6e32;">else
-    </span><span style="color:#f29718;">bundle</span><span style="color:#61676c;"> exec fastlane staging
-</span><span style="color:#fa6e32;">fi
-</span></code></pre>
+if [ "${TRAVIS_TAG}" = "release" ]; then
+    bundle exec fastlane release
+else
+    bundle exec fastlane staging
+fi
+</code></pre>
 <p>And the final piece of the puzzle is <a href="https://fastlane.tools">Fastlane</a> which is an
 all-in-one tool for managing iOS and android deployment. I'm using fastlane for
 test running, managing signing certificates, and deploying to staging/production.</p>
-<pre style="background-color:#fafafa;">
-<code class="language-ruby" data-lang="ruby"><span style="font-style:italic;color:#abb0b6;"># This file contains the fastlane.tools configuration
+<pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># This file contains the fastlane.tools configuration
 # You can find the documentation at https://docs.fastlane.tools
 #
 # For a list of all available actions, check out
@@ -144,52 +141,52 @@ test running, managing signing certificates, and deploying to staging/production
 #     https://docs.fastlane.tools/plugins/available-plugins
 #
 
-</span><span style="color:#61676c;">setup_travis
-default_platform(</span><span style="color:#86b300;">:ios</span><span style="color:#61676c;">)
+setup_travis
+default_platform(:ios)
 
-platform </span><span style="color:#86b300;">:ios </span><span style="color:#fa6e32;">do
-  </span><span style="color:#f29718;">$app_ids </span><span style="color:#ed9366;">= </span><span style="color:#61676c;">{
-    </span><span style="color:#86b300;">:nightly </span><span style="color:#61676ccc;">=&gt; </span><span style="color:#86b300;">&quot;edu.odu.cs.liftright.nightly&quot;</span><span style="color:#61676ccc;">,
-    </span><span style="color:#86b300;">:staging </span><span style="color:#61676ccc;">=&gt; </span><span style="color:#86b300;">&quot;edu.odu.cs.liftright.staging&quot;</span><span style="color:#61676ccc;">,
-    </span><span style="color:#86b300;">:release </span><span style="color:#61676ccc;">=&gt; </span><span style="color:#86b300;">&quot;edu.odu.cs.liftright&quot;
-  </span><span style="color:#61676c;">}
+platform :ios do
+  $app_ids = {
+    :nightly => "edu.odu.cs.liftright.nightly",
+    :staging => "edu.odu.cs.liftright.staging",
+    :release => "edu.odu.cs.liftright"
+  }
   
-  </span><span style="color:#fa6e32;">def </span><span style="color:#f29718;">prepare_match</span><span style="color:#61676c;">(</span><span style="color:#ff8f40;">ro</span><span style="color:#ed9366;">=</span><span style="color:#ff8f40;">true</span><span style="color:#61676c;">)
-    [</span><span style="color:#86b300;">&quot;development&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;adhoc&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">&quot;appstore&quot;</span><span style="color:#61676c;">]</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">each </span><span style="color:#fa6e32;">do </span><span style="color:#61676c;">|</span><span style="color:#ff8f40;">type</span><span style="color:#61676c;">|
-      </span><span style="color:#f07171;">match</span><span style="color:#61676c;">(</span><span style="color:#86b300;">type:</span><span style="color:#61676c;"> type</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">readonly:</span><span style="color:#61676c;"> ro</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">app_identifier: </span><span style="color:#f29718;">$app_ids</span><span style="color:#ed9366;">.</span><span style="color:#61676c;">values)
-    </span><span style="color:#fa6e32;">end
+  def prepare_match(ro=true)
+    ["development", "adhoc", "appstore"].each do |type|
+      match(type: type, readonly: ro, app_identifier: $app_ids.values)
+    end
   end
   
-  def </span><span style="color:#f29718;">lr_build_app</span><span style="color:#61676c;">(</span><span style="color:#ff8f40;">scheme</span><span style="color:#61676ccc;">:, </span><span style="color:#ff8f40;">config</span><span style="color:#61676ccc;">:</span><span style="color:#61676c;">)
-    build_app(</span><span style="color:#86b300;">workspace: &quot;liftright.xcworkspace&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">scheme:</span><span style="color:#61676c;"> scheme</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">configuration:</span><span style="color:#61676c;"> config)
-  </span><span style="color:#fa6e32;">end
+  def lr_build_app(scheme:, config:)
+    build_app(workspace: "liftright.xcworkspace", scheme: scheme, configuration: config)
+  end
 
-  def </span><span style="color:#f29718;">lr_upload_beta</span><span style="color:#61676c;">(</span><span style="color:#ff8f40;">app_id</span><span style="color:#61676c;">)
-    cl </span><span style="color:#ed9366;">= </span><span style="color:#86b300;">`git log --max-count=1 --format=&quot;%B&quot;`
-</span><span style="color:#61676c;">    upload_to_testflight(</span><span style="color:#86b300;">app_identifier:</span><span style="color:#61676c;"> app_id</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">skip_waiting_for_build_processing: </span><span style="color:#ff8f40;">true</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">changelog:</span><span style="color:#61676c;"> cl)
-  </span><span style="color:#fa6e32;">end
+  def lr_upload_beta(app_id)
+    cl = `git log --max-count=1 --format="%B"`
+    upload_to_testflight(app_identifier: app_id, skip_waiting_for_build_processing: true, changelog: cl)
+  end
 
-</span><span style="color:#61676c;">  lane </span><span style="color:#86b300;">:test </span><span style="color:#fa6e32;">do
-</span><span style="color:#61676c;">    run_tests(</span><span style="color:#86b300;">scheme: &quot;liftright&quot;</span><span style="color:#61676c;">)
-  </span><span style="color:#fa6e32;">end
+  lane :test do
+    run_tests(scheme: "liftright")
+  end
   
-</span><span style="color:#61676c;">  lane </span><span style="color:#86b300;">:staging </span><span style="color:#fa6e32;">do
-</span><span style="color:#61676c;">    prepare_match
-    lr_build_app(</span><span style="color:#86b300;">scheme: &quot;LiftRight [Staging]&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">config: &quot;Staging [Release]&quot;</span><span style="color:#61676c;">)
-    lr_upload_beta(</span><span style="color:#f29718;">$app_ids</span><span style="color:#61676c;">[</span><span style="color:#86b300;">:staging</span><span style="color:#61676c;">])
-  </span><span style="color:#fa6e32;">end
+  lane :staging do
+    prepare_match
+    lr_build_app(scheme: "LiftRight [Staging]", config: "Staging [Release]")
+    lr_upload_beta($app_ids[:staging])
+  end
 
-</span><span style="color:#61676c;">  lane </span><span style="color:#86b300;">:release </span><span style="color:#fa6e32;">do
-</span><span style="color:#61676c;">    prepare_match
-    lr_build_app(</span><span style="color:#86b300;">scheme: &quot;LiftRight [Production]&quot;</span><span style="color:#61676ccc;">, </span><span style="color:#86b300;">config: &quot;Production [Release]&quot;</span><span style="color:#61676c;">)
-    lr_upload_beta(</span><span style="color:#f29718;">$app_ids</span><span style="color:#61676c;">[</span><span style="color:#86b300;">:release</span><span style="color:#61676c;">])
-  </span><span style="color:#fa6e32;">end
+  lane :release do
+    prepare_match
+    lr_build_app(scheme: "LiftRight [Production]", config: "Production [Release]")
+    lr_upload_beta($app_ids[:release])
+  end
 
-</span><span style="color:#61676c;">  lane </span><span style="color:#86b300;">:certificates </span><span style="color:#fa6e32;">do
-</span><span style="color:#61676c;">    prepare_match(False)
-  </span><span style="color:#fa6e32;">end
+  lane :certificates do
+    prepare_match(False)
+  end
 end
-</span></code></pre>
+</code></pre>
 <p>This little ditty does checks out signing certificates, builds the specified configuration, and uploads to TestFlight! It also attaches the commit message off of the latest commit as a changelog so recipients can get an idea of what changed. When I approve a PR for merging I merge/squash and rewrite this commit message to be meaningful for an end user.</p>
 <p>​</p>
 <h2 id="the-result">The result</h2>
