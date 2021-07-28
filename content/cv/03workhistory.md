@@ -3,7 +3,7 @@ title = "Professional Experience"
 
 [extra]
 print = true
-weight = 300
+weight = 200
 desc = ""
 location = ""
 gpa = ""

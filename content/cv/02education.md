@@ -3,7 +3,7 @@ title = "Education"
 
 [extra]
 print = true
-weight = 200
+weight = 300
 desc = ""
 location = ""
 gpa = ""

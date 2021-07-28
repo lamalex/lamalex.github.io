@@ -3,7 +3,7 @@ title = "U.S. Navy"
 
 [extra]
 print = true
-weight = 307
+weight = 207
 desc = ""
 location = ""
 gpa = ""
@@ -18,4 +18,4 @@ timespan = "August 2014 - May 2021"
   
   * Trained 10 personnel from initial ascension qualifications through senior qualifications. 100% advancement to Second Class Petty Officer for sailors who were assigned as mentees.
   
-  * Awarded: Navy & Marine Corps Achievement Medal (6), Good Conduct Medal (2), 2018 USS San Francisco Junior Sailor of the Year. 
+  * Awarded: Navy & Marine Corps Achievement Medal (8), Good Conduct Medal (2), 2018 USS San Francisco Junior Sailor of the Year. 
