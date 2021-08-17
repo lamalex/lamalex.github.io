@@ -107,7 +107,7 @@ section {
 }
 
 body {
-    line-height: 1;
+    line-height: 0.75;
 }
 ol,
 ul {
@@ -305,7 +305,7 @@ em {
 }
 
 strong {
-    font-weight: bolder;
+    font-weight: 600;
 }
 
 a {
@@ -318,13 +318,25 @@ a:hover {
 }
 
 li ul {
-    text-align: left;
+    text-align: justify;
     margin-top: 0.25em;
+}
+
+.coverletter {
+    padding: 20px;
+    line-height: 0.75cm;
+
+    .section {
+        text-indent: 2rem;
+        text-align: justify;
+        margin-bottom: 2rem;
+    }
 }
 
 @media print {
     .wrapper {
         display: grid;
+        line-height: 0.6cm;
         grid-gap: 5px;
         grid-template-columns: 25% auto;
         grid-template-areas:
@@ -337,12 +349,14 @@ li ul {
 
     .sidebar {
         font-size: x-small;
+        text-align: right;
     }
 
     .timespan {
         font-size: x-small;
         display: none;
         visibility: hidden;
+        text-align: right;
     }
 
     .content {
