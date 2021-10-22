@@ -130,7 +130,7 @@
 
 before_script:
   # Download and unzip the zola executable
-  - curl -s -L https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C /usr/local/bin
+  - curl -s -L https:&#x2F;&#x2F;github.com&#x2F;getzola&#x2F;zola&#x2F;releases&#x2F;download&#x2F;v0.11.0&#x2F;zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz | sudo tar xvzf - -C &#x2F;usr&#x2F;local&#x2F;bin
 
 script:
   - zola build
@@ -146,24 +146,24 @@ deploy:
 <h3 id="light-mode-dark-mode-party-mode-cold-reality-mode-mode">Light mode/Dark mode --&gt; Party mode/cold-reality-mode mode</h3>
 <p>Admittedly all of the hard work of designing a color scheme was done for me. I ape'd a significant amount of the markup for this site from <a href="https://cassie.codes">cassie.codes</a>, but I implemented my own simple mode switcher from <em>party mode</em> to <em>cold-dark-reality-mode</em>.</p>
 <pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">function() {
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+    const toggleSwitch = document.querySelector(&#x27;.theme-switch input[type=&quot;checkbox&quot;]&#x27;);
 
     function switchTheme(e) {
-        document.body.classList.toggle('party')
-        document.body.classList.toggle('death')
-        localStorage.setItem('theme', document.body.classList.contains('party') ? 'party' : 'death'); //add this
+        document.body.classList.toggle(&#x27;party&#x27;)
+        document.body.classList.toggle(&#x27;death&#x27;)
+        localStorage.setItem(&#x27;theme&#x27;, document.body.classList.contains(&#x27;party&#x27;) ? &#x27;party&#x27; : &#x27;death&#x27;); &#x2F;&#x2F;add this
     }
 
-    toggleSwitch.addEventListener('change', switchTheme, false);
+    toggleSwitch.addEventListener(&#x27;change&#x27;, switchTheme, false);
 
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    const currentTheme = localStorage.getItem(&#x27;theme&#x27;) ? localStorage.getItem(&#x27;theme&#x27;) : null;
 
     if (currentTheme) {
-        document.body.className = ''
+        document.body.className = &#x27;&#x27;
         document.body.classList.add(currentTheme)
-        toggleSwitch.checked = currentTheme === 'death'
+        toggleSwitch.checked = currentTheme === &#x27;death&#x27;
 
-        if (currentTheme === 'dark') {
+        if (currentTheme === &#x27;dark&#x27;) {
             toggleSwitch.checked = true;
         }
     }

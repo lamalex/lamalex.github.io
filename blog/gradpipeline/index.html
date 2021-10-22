@@ -95,32 +95,32 @@ install:
 script:
   - bundle exec danger
   - bundle exec fastlane test
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./scripts/travis-deploy.sh; fi'
+  - &#x27;if [ &quot;$TRAVIS_PULL_REQUEST&quot; = &quot;false&quot; ]; then bash .&#x2F;scripts&#x2F;travis-deploy.sh; fi&#x27;
 xcode_project: liftright.xcworkspace # path to your xcodeproj folder
 xcode_scheme: liftrightTests
 xcode_destination: platform=iOS Simulator,OS=13.0,name=iPhone 11 Pro, iPhone 8
 </code></pre>
 <p>This will run danger (which lints and checks for obviously wrong things in a pull request), then runs my test suite, and finally if not a pull request branch runs a script to deploy straight to TestFlight, where my PI will get a notification on her phone that I made an update. This script is really straight forward. </p>
-<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">#!/bin/bash
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">#!&#x2F;bin&#x2F;bash
 set -ev
 
 # We only want to push from trunk.
 # Did you know emojis are valid in git branch names?
-if [ "${TRAVIS_BRANCH}" != "game-ui-🚀" ]; then
+if [ &quot;${TRAVIS_BRANCH}&quot; != &quot;game-ui-🚀&quot; ]; then
     exit 0
 fi
 
-# We bump the build number to today's date so we can be sure
+# We bump the build number to today&#x27;s date so we can be sure
 # that we supercede the newest version in TestFlight.
-buildNumber=$(date +"%Y.%m.%d.%H%M%S")
-/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" liftright/Info.plist
+buildNumber=$(date +&quot;%Y.%m.%d.%H%M%S&quot;)
+&#x2F;usr&#x2F;libexec&#x2F;PlistBuddy -c &quot;Set :CFBundleVersion $buildNumber&quot; liftright&#x2F;Info.plist
 
 # We have 2 deploy targets. Staging is for development builds.
 # Extra debugging might be enabled, 
 # data is logged to a more volatile server, etc.
-# If the commit has been tagged as "release" 
+# If the commit has been tagged as &quot;release&quot; 
 # then it gets pushed to the server for our actual users
-if [ "${TRAVIS_TAG}" = "release" ]; then
+if [ &quot;${TRAVIS_TAG}&quot; = &quot;release&quot; ]; then
     bundle exec fastlane release
 else
     bundle exec fastlane staging
@@ -130,15 +130,15 @@ fi
 all-in-one tool for managing iOS and android deployment. I'm using fastlane for
 test running, managing signing certificates, and deploying to staging/production.</p>
 <pre data-lang="ruby" class="language-ruby "><code class="language-ruby" data-lang="ruby"># This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
+# You can find the documentation at https:&#x2F;&#x2F;docs.fastlane.tools
 #
 # For a list of all available actions, check out
 #
-#     https://docs.fastlane.tools/actions
+#     https:&#x2F;&#x2F;docs.fastlane.tools&#x2F;actions
 #
 # For a list of all available plugins, check out
 #
-#     https://docs.fastlane.tools/plugins/available-plugins
+#     https:&#x2F;&#x2F;docs.fastlane.tools&#x2F;plugins&#x2F;available-plugins
 #
 
 setup_travis
@@ -146,39 +146,39 @@ default_platform(:ios)
 
 platform :ios do
   $app_ids = {
-    :nightly => "edu.odu.cs.liftright.nightly",
-    :staging => "edu.odu.cs.liftright.staging",
-    :release => "edu.odu.cs.liftright"
+    :nightly =&gt; &quot;edu.odu.cs.liftright.nightly&quot;,
+    :staging =&gt; &quot;edu.odu.cs.liftright.staging&quot;,
+    :release =&gt; &quot;edu.odu.cs.liftright&quot;
   }
   
   def prepare_match(ro=true)
-    ["development", "adhoc", "appstore"].each do |type|
+    [&quot;development&quot;, &quot;adhoc&quot;, &quot;appstore&quot;].each do |type|
       match(type: type, readonly: ro, app_identifier: $app_ids.values)
     end
   end
   
   def lr_build_app(scheme:, config:)
-    build_app(workspace: "liftright.xcworkspace", scheme: scheme, configuration: config)
+    build_app(workspace: &quot;liftright.xcworkspace&quot;, scheme: scheme, configuration: config)
   end
 
   def lr_upload_beta(app_id)
-    cl = `git log --max-count=1 --format="%B"`
+    cl = `git log --max-count=1 --format=&quot;%B&quot;`
     upload_to_testflight(app_identifier: app_id, skip_waiting_for_build_processing: true, changelog: cl)
   end
 
   lane :test do
-    run_tests(scheme: "liftright")
+    run_tests(scheme: &quot;liftright&quot;)
   end
   
   lane :staging do
     prepare_match
-    lr_build_app(scheme: "LiftRight [Staging]", config: "Staging [Release]")
+    lr_build_app(scheme: &quot;LiftRight [Staging]&quot;, config: &quot;Staging [Release]&quot;)
     lr_upload_beta($app_ids[:staging])
   end
 
   lane :release do
     prepare_match
-    lr_build_app(scheme: "LiftRight [Production]", config: "Production [Release]")
+    lr_build_app(scheme: &quot;LiftRight [Production]&quot;, config: &quot;Production [Release]&quot;)
     lr_upload_beta($app_ids[:release])
   end
 
