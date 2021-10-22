@@ -9,4 +9,4 @@ location = ""
 gpa = ""
 timespan = ""
 +++
-Mostly just being a really nice person, but also developing reliable, tested, and legible software as part of the consumer product group at Ford Motor Company Credit.
+Helping the U.S. Army fight emerging network threats as a Senior Software Engineer at CSIOS Corporation.
