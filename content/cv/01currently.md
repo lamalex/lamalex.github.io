@@ -9,4 +9,4 @@ location = ""
 gpa = ""
 timespan = ""
 +++
-Helping the U.S. Army fight emerging network threats as a Senior Software Engineer at CSIOS Corporation.
+Building blazing-fast, high-availability backend service as a Senior Engineer at Red Digital.
