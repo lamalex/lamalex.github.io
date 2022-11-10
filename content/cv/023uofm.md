@@ -10,4 +10,4 @@ gpa = ""
 timespan = "May 2022 - May 2024"
 +++
 * ___Coursework___:
-  * Marketing, Financial Reporting, Statistics, Econonomics
+  * Strategy, Accounting, Marketing, Leadership

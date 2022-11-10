@@ -2,7 +2,7 @@
 title = "Projects"
 
 [extra]
-print = true
+print = false
 weight = 400
 desc = ""
 location = ""

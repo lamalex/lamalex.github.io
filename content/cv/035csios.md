@@ -2,7 +2,7 @@
 title = "CSIOS Corporation"
 
 [extra]
-print = true
+print = false
 weight = 202
 desc = ""
 location = ""
