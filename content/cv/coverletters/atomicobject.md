@@ -1,5 +1,5 @@
 +++
-title = "Hello, atoms"
+title = "Hej, atoms"
 +++
 {% coversection() %}
 I'm a jack-of-all-trades polyglot engineer who loves taking on new challenges. In my career I've built high-quality software in Python,
