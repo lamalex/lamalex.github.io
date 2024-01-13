@@ -9,4 +9,4 @@ location = ""
 gpa = ""
 timespan = ""
 +++
-Building blazing-fast, high-availability backend service as a Senior Engineer at Red Digital.
+Building blazing-fast, high-availability backend services as a Senior Engineer at Red Digital.
