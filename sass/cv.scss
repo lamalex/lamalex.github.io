@@ -91,6 +91,7 @@ video {
     font: inherit;
     vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -109,15 +110,18 @@ section {
 body {
     line-height: 0.75;
 }
+
 ol,
 ul {
     list-style: none;
     margin-bottom: 0.25em;
 }
+
 blockquote,
 q {
     quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -125,6 +129,7 @@ q:after {
     content: '';
     content: none;
 }
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -152,7 +157,7 @@ grid {
     justify-self: flex-end;
 }
 
-.content {
+.cv-content {
     grid-area: content;
     display: flex;
     flex-direction: row;
@@ -170,7 +175,7 @@ grid {
     $shadow-color-dark: #e84118;
     display: inline-block;
 
-    h1 {    
+    h1 {
         margin: 0;
         font-size: 64px;
         position: relative;
@@ -223,13 +228,13 @@ grid {
     display: none;
 }
 
-.wrapper {
+.cv-wrapper {
     display: grid;
     grid-gap: 0px;
-    grid-template-columns: 18% auto 15%;
+    grid-template-columns: 18% auto;
     grid-template-areas:
-        '....... header  header'
-        'sidebar content timespan';
+        '....... header'
+        'sidebar content';
     grid-auto-rows: min-content;
 }
 
@@ -276,7 +281,7 @@ h1 {
     line-height: 1em;
 }
 
-h1 + p {
+h1+p {
     /*subtitle*/
     font-style: italic;
     font-size: 110%;
@@ -365,6 +370,7 @@ li ul {
         }
 
         font-size: x-small;
+
         ul li {
             display: inline;
         }
