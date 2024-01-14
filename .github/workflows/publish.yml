@@ -1,0 +1,37 @@
+on: [push]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Zola
+        run: sudo snap install --edge zola
+      
+      - name: Build PDF CV
+        run: |
+            zola serve &
+            export ZOLA_PID=$!
+            sleep 5
+            curl localhost:1111/cv &> /dev/null
+            google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://localhost:1111/cv
+            kill $ZOLA_PID
+
+      - name: Build site
+        run: zola build
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: bde07ad246cac0ae6ae68324e6aae341
+          projectName: lamalex-github-io
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
