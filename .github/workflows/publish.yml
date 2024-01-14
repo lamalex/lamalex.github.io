@@ -20,7 +20,14 @@ jobs:
             export ZOLA_PID=$!
             sleep 5
             curl localhost:1111/cv &> /dev/null
-            google-chrome --headless --run-all-compositor-stages-before-draw --print-to-pdf-no-header --print-to-pdf=static/alexlauni-resume.pdf http://localhost:1111/cv
+            google-chrome \
+                --headless \
+                --disable-gpu \
+                --run-all-compositor-stages-before-draw \
+                --no-pdf-header-footer \
+                --print-to-pdf-no-header \
+                --print-to-pdf=static/alexlauni-resume.pdf \
+                http://localhost:1111/cv
             kill $ZOLA_PID
 
       - name: Print github.ref (debugging)
