@@ -22,7 +22,6 @@ url
 desc
 timespan
 Shubham
-gpa
 LiftRight
 gamified
 LaunearAlgebra

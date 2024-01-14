@@ -6,7 +6,6 @@ print = true
 weight = 201
 desc = ""
 location = ""
-gpa = ""
 timespan = "January 2022 - Present"
 +++
 * __Senior Backend & Data Engineer__ __\|__ `C#/.NET, Rust, AWS, Databricks, DBT, Scala, DevOps`

@@ -1,6 +1,6 @@
 +++
 title = "Alex Launi"
-page_template = "coverletter.html"
+page_template = "cv-print-coverletter.html"
 
 [extra]
 contact = [

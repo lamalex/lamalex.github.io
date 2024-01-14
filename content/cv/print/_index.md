@@ -1,4 +1,4 @@
 +++
 title = "Alex Launi"
-template = "printcv.html"
+template = "cv-print.html"
 +++

@@ -6,7 +6,6 @@ print = false
 weight = 0
 desc = ""
 location = ""
-gpa = ""
 timespan = ""
 +++
-Building blazing-fast, high-availability backend services as a Senior Engineer at Red Digital.
+Leading backend & data teams at Red Ventures to build and maintain fast, available backend services, and ELT pipelines.

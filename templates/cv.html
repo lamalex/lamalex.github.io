@@ -1,4 +1,3 @@
-{% extends "site.html" %}
 {% block content %}
 
 {% for segment in section.pages | sort(attribute="extra.weight") %}
@@ -15,13 +14,6 @@
         {% endif %} {% set location = segment.extra.location -%} {% if location != '' %}
         <p>
             <code>{{ location }}</code>
-        </p>
-        {% endif %}
-        {% set gpa = segment.extra.gpa %} {% if gpa != '' %}
-        <p>
-            <code>
-                        <em>GPA: {{ gpa }}</em>
-                    </code>
         </p>
         {% endif %}
         <code class="printonly">{{ segment.extra.timespan }}</code>
