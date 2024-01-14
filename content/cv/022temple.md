@@ -2,7 +2,7 @@
 title = "B.S. Computer Science"
 
 [extra]
-print = true
+print = false
 weight = 303
 desc = "Temple University"
 location = "Philadelphia, PA"
