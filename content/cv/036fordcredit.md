@@ -6,7 +6,6 @@ print = true
 weight = 203
 desc = ""
 location = ""
-gpa = ""
 timespan = "February 2021 - September 2021"
 +++
 * __Full-Stack Engineer__ __\|__ `Java, Spring Boot, SQL, Vue, AI/ML, XP`Built AI-backed personalized recommendation system helping to increase LTV of Ford Credit customers.

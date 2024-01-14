@@ -6,7 +6,6 @@ print = true
 weight = 209
 desc = ""
 location = ""
-gpa = ""
 timespan = "November 2010 - February 2013"
 +++
 * __Software Engineer__ __\|__ `Python, C++, C, JavaScript, Linux, Bash, Jenkins, Bazaar, QA, DevOps`

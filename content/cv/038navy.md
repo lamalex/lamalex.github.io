@@ -6,7 +6,6 @@ print = true
 weight = 207
 desc = ""
 location = ""
-gpa = ""
 timespan = "August 2014 - May 2021"
 +++
 * __Navigation Electronics Technician (Submarines) First Class__ __\|__ `Operations, AC/DC/Digital electronics, TS/SCI, Instructor`

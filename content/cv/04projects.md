@@ -6,7 +6,6 @@ print = false
 weight = 400
 desc = ""
 location = ""
-gpa = ""
 timespan = ""
 +++
 * __MonarchBot__ __\|__ {{ projectlink(url='https://github.com/lamalex/monarch-bot') }} `Rust, CI/CD, Docker, Mailgun, Kubernetes`
