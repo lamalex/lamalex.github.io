@@ -10,12 +10,12 @@
     <meta property="og:url" content="{{ current_url }}" />
     <meta name="twitter:creator" content="@rhonda_jeremy" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="{{ get_url(path="style.css") |safe }}" />
-    
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+
     {% if section.extra.preloads %}
-        {% for preload in section.extra.preloads %}
-            <link rel="preload" as="image" href="{{ get_url(path=preload) }}" |safe }}" />
-        {% endfor %}
+    {% for preload in section.extra.preloads %}
+    <link rel="preload" as="image" href="{{ preload }}" />
+    {% endfor %}
     {% endif %}
 </head>
 
@@ -26,25 +26,22 @@
                 <nav class="nav">
                     <ul class="nav__list box-flex align-center md:space-before">
                         <li class="nav__item">
-                            <a href="{{get_url(path="") |safe}}" aria-current="page" class="nav__item-hover"
-                                data-id="blog">
-                                <span class="nav__item-hover-inner" data-hover="blog">
+                            <a href="/" aria-current="page" class="nav__item-hover" data-id="home">
+                                <span class="nav__item-hover-inner" data-hover="home">
                                     home
                                 </span>
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="{{get_url(path="/blog/") }}" aria-current="page" class="nav__item-hover"
-                                data-id="blog">
+                            <a href="/blog" aria-current="page" class="nav__item-hover" data-id="blog">
                                 <span class="nav__item-hover-inner" data-hover="blog">
                                     blog
                                 </span>
                             </a>
                         </li>
                         <li class="nav__item">
-                            <a href="{{get_url(path="/cv") }}" aria-current="page" class="nav__item-hover"
-                                data-id="cv">
-                                <span class="nav__item-hover-inner" data-hover="blog">
+                            <a href="/cv" aria-current=" page" class="nav__item-hover" data-id="cv">
+                                <span class="nav__item-hover-inner" data-hover="cv">
                                     cv
                                 </span>
                             </a>
@@ -101,7 +98,7 @@
             </div>
         </div>
     </main>
-    <script defer="defer" src="{{ get_url(path="/scripts/main.js") | safe}}"></script>
+    <script defer="defer" src="/scripts/main.js"></script>
     {% block script %}{% endblock script %}
 </body>
 {% endblock html %}

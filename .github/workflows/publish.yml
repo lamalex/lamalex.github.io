@@ -1,0 +1,58 @@
+name: Deploy to Cloudflare Pages
+on: [push]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Zola
+        run: sudo snap install --edge zola
+      
+      - name: Build PDF CV
+        run: |
+            zola serve &
+            export ZOLA_PID=$!
+            sleep 5
+            curl localhost:1111/cv &> /dev/null
+            google-chrome \
+                --headless \
+                --disable-gpu \
+                --run-all-compositor-stages-before-draw \
+                --no-pdf-header-footer \
+                --print-to-pdf-no-header \
+                --print-to-pdf=static/alexlauni-resume.pdf \
+                http://localhost:1111/cv
+            kill $ZOLA_PID
+
+      - name: Print github.ref (debugging)
+        run: echo ${{ github.ref }}
+
+      - name: Set Build Command for Non-main Branch
+        if: contains(github.ref, 'refs/heads/') && !endsWith(github.ref, '/main')
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: echo "BUILD_COMMAND=zola build -u ${GITHUB_REF_NAME}.lamalex-github-io.pages.dev" >> $GITHUB_ENV
+
+      - name: Set Build Command for Main Branch
+        if: endsWith(github.ref, '/main')
+        run: echo "BUILD_COMMAND=zola build" >> $GITHUB_ENV
+
+      - name: Build site
+        run: ${{ env.BUILD_COMMAND }}
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: bde07ad246cac0ae6ae68324e6aae341
+          projectName: lamalex-github-io
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: '3'
