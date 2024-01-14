@@ -28,7 +28,7 @@ jobs:
                 --no-pdf-header-footer \
                 --print-to-pdf-no-header \
                 --print-to-pdf=static/alexlauni-resume.pdf \
-                http://localhost:1111/cv
+                http://localhost:1111/cv/print
             kill $ZOLA_PID
 
       - name: Print github.ref (debugging)
