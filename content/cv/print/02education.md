@@ -1,1 +1,0 @@
-../02education.md

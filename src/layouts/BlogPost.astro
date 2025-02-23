@@ -1,0 +1,100 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import DotGrid from '../components/DotGrid';
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+		<style>
+			#dotCanvas {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 0;
+			}
+		</style>
+		</style>
+	</head>
+	<body class="h-screen overflow-hidden">
+		<div class="fixed inset-0 z-0">
+			<DotGrid client:only text="" links={[]} />
+		</div>
+		<div class="absolute inset-0 overflow-auto z-10">
+			<div class="min-h-full w-full px-2 sm:px-8 sm:flex sm:justify-center" style="touch-action: pan-y;">
+				<div class="w-full sm:max-w-[85ch]">
+					<article class="bg-white/90 rounded shadow-lg font-['Press_Start_2P'] leading-relaxed p-2 sm:p-8" style="touch-action: auto;">
+					<a href="/blog" class="inline-block mb-12 text-gray-800 text-sm p-2 bg-white/90 rounded transition-all hover:bg-white hover:-translate-y-0.5">← Back to Blog</a>
+				<h1 class="mb-8 pb-6 border-b border-gray-200 text-gray-800 text-lg tracking-wide leading-relaxed">{title}</h1>
+				<div class="mb-12 text-xs text-gray-600">
+					<time datetime={pubDate.toISOString()}>
+						{pubDate.toLocaleDateString('en-us', {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						})}
+					</time>
+					{
+						updatedDate && (
+							<div class="mt-2">
+								Last updated on <time datetime={updatedDate.toISOString()}>
+									{updatedDate.toLocaleDateString('en-us', {
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric',
+									})}
+								</time>
+							</div>
+						)
+					}
+				</div>
+				<div class="prose prose-sm prose-gray max-w-none">
+					<style>
+						.prose {
+							font-family: 'Press Start 2P', monospace;
+						}
+						.prose p {
+							margin-bottom: 2rem;
+							font-size: 0.8rem;
+							line-height: 1.8;
+						}
+						.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+							margin: 3rem 0 1.5rem;
+							font-size: 1rem;
+							letter-spacing: 0.1em;
+							line-height: 1.6;
+						}
+						.prose code {
+							background: rgba(0, 0, 0, 0.05);
+							padding: 0.5rem;
+							border-radius: 4px;
+							font-size: 0.7rem;
+							line-height: 1.6;
+						}
+						.prose a {
+							color: #ff4646;
+							text-decoration: none;
+							padding: 0.2rem 0.4rem;
+							transition: all 0.2s ease;
+						}
+						.prose a:hover {
+							background: rgba(255, 70, 70, 0.1);
+							border-radius: 2px;
+						}
+					</style>
+					<slot />
+				</div>
+				</article>
+			</div>
+		</div>
+	</body>
+</html>

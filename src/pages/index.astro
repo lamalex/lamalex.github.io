@@ -1,0 +1,29 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import DotGrid from "../components/DotGrid";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="h-screen overflow-hidden">
+    <div class="fixed inset-0 z-0">
+      <DotGrid
+        client:only
+        preventScroll={true}
+        links={[
+          { text: ""},
+          { text: "BLOG", route: "/blog" },
+          { text: "CV", route: "/cv" },
+        ]}
+      />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,115 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import DotGrid from "../components/DotGrid";
+
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+const cvEntries = await getCollection("cv");
+const sortedEntries = await Promise.all(
+  cvEntries
+    .filter((entry) => !entry.id.startsWith("print/"))
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (entry) => {
+      const { Content } = await render(entry);
+      return { ...entry, Content };
+    })
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .prose {
+        @media (max-width: 1024px) {
+          padding-top: 75px;
+        }
+        font-family: "Press Start 2P", monospace;
+      }
+      .prose p {
+        margin-bottom: 2rem;
+        font-size: 0.8rem;
+        line-height: 1.8;
+      }
+      .prose h1,
+      .prose h2,
+      .prose h3,
+      .prose h4,
+      .prose h5,
+      .prose h6 {
+        margin: 3rem 0 1.5rem;
+        font-size: 1rem;
+        letter-spacing: 0.1em;
+        line-height: 1.6;
+      }
+      .prose code {
+        background: rgba(0, 0, 0, 0.05);
+        padding: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        line-height: 1.6;
+      }
+      .prose a {
+        color: #ff4646;
+        text-decoration: none;
+        padding: 0.2rem 0.4rem;
+        transition: all 0.2s ease;
+      }
+      .prose a:hover {
+        background: rgba(255, 70, 70, 0.1);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body class="h-screen overflow-hidden">
+    <div class="fixed inset-0 z-0">
+      <DotGrid
+        client:only
+        links={[
+          { text: "HOME", route: "/" },
+          { text: "BLOG", route: "/blog" },
+        ]}
+      />
+    </div>
+    <div
+      class="absolute left-0 right-0 top-0 bottom-0 overflow-auto z-10 md:top-[31%]"
+    >
+      <div
+        class="min-h-full w-full px-2 sm:px-8 sm:flex sm:justify-center"
+        style="touch-action: pan-y;"
+      >
+        <div class="w-full sm:max-w-[85ch]">
+          <main class="font-['Press_Start_2P']" style="touch-action: auto;">
+            <section class="space-y-8">
+              {
+                sortedEntries.map((entry) => (
+                  <div class="block p-6 bg-white/90 rounded hover:bg-white hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl pointer-events-auto">
+                    <h3 class="mb-8 pb-6 border-b border-gray-200 text-gray-800 text-lg tracking-wide leading-relaxed">
+                      {entry.data.title || ""}
+                    </h3>
+                    <div class="prose prose-sm prose-gray max-w-none">
+                      <entry.Content />
+                    </div>
+                    {entry.data.timespan && (
+                      <p class="mt-4 text-xs text-gray-600">
+                        {entry.data.timespan}
+                      </p>
+                    )}
+                  </div>
+                ))
+              }
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
