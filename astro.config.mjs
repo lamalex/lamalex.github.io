@@ -14,4 +14,7 @@ export default defineConfig({
         plugins: [tailwindcss()]
     },
     integrations: [mdx(), sitemap(), react()],
+    redirects: {
+        '/working-with-me/': '/blog/working-with-me/'
+    }
 });
