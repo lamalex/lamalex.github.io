@@ -45,8 +45,7 @@ const DotGrid = ({links, preventScroll = false }) => {
 
     const ctx = canvas.getContext('2d');
     const DPR = window.devicePixelRatio || 1;
-    console.log(`DPR: ${DPR}`);
-    
+
     canvas.width = dimensions.width * DPR;
     canvas.height = dimensions.height * DPR;
     canvas.style.width = `${dimensions.width}px`;
@@ -298,12 +297,10 @@ const DotGrid = ({links, preventScroll = false }) => {
 
     const handleGlobalMouseMove = (e) => {
       const rect = canvas.getBoundingClientRect();
-      const scrollContainer = document.querySelector('.overflow-auto');
-      const scrollTop = scrollContainer ? scrollContainer.scrollTop : 0;
       
       // Get the mouse position relative to the document
       const x = e.clientX;
-      const y = e.clientY + scrollTop;
+      const y = e.clientY;
       
       // Convert to canvas coordinates
       const canvasX = x * (canvas.width / rect.width);
