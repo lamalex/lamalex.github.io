@@ -1,10 +1,11 @@
 ---
 import BaseHead from "../../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import DotGrid from "../../components/DotGrid";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection("blog")) as CollectionEntry<'blog'>[];
+const sortedPosts: CollectionEntry<'blog'>[] = posts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
@@ -18,12 +19,13 @@ const posts = (await getCollection("blog")).sort(
       rel="stylesheet"
     />
   </head>
-  <body class="h-screen overflow-hidden">
+  <body class="min-h-screen overflow-x-hidden">
     <div class="fixed inset-0 z-0">
       <DotGrid
         client:only
         links={[
           { text: "HOME", route: "/" },
+          { text: "RECIPES", route: "/recipes" },
           { text: "CV", route: "/cv" },
         ]}
       />
@@ -33,13 +35,13 @@ const posts = (await getCollection("blog")).sort(
     >
       <div
         class="min-h-full w-full px-2 sm:px-8 sm:flex sm:justify-center"
-        style="touch-action: pan-y;"
+        style="touch-action: pan-y pinch-zoom;"
       >
         <div class="w-full sm:max-w-[85ch] lg:mt-0">
           <main class="font-['Press_Start_2P']" style="touch-action: auto;">
             <section class="space-y-8">
               {
-                posts.map((post) => (
+                sortedPosts.map((post) => (
                   <a
                     href={`/blog/${post.id}/`}
                     class="block p-6 bg-white/90 rounded hover:bg-white hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl pointer-events-auto"

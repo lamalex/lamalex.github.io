@@ -3,15 +3,14 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import DotGrid from "../components/DotGrid";
 
-import { getCollection } from "astro:content";
-import { render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 
-const cvEntries = await getCollection("cv");
+const cvEntries = (await getCollection("cv")) as CollectionEntry<'cv'>[];
 const sortedEntries = await Promise.all(
   cvEntries
     .filter((entry) => !entry.id.startsWith("print/"))
-    .sort((a, b) => a.data.order - b.data.order)
-    .map(async (entry) => {
+    .sort((a: CollectionEntry<'cv'>, b: CollectionEntry<'cv'>) => a.data.order - b.data.order)
+    .map(async (entry: CollectionEntry<'cv'>) => {
       const { Content } = await render(entry);
       return { ...entry, Content };
     })
@@ -67,9 +66,23 @@ const sortedEntries = await Promise.all(
         background: rgba(255, 70, 70, 0.1);
         border-radius: 2px;
       }
+      @media (max-width: 640px) {
+        .prose p {
+          font-size: 1.05rem;
+          line-height: 2;
+        }
+        .prose h1,
+        .prose h2,
+        .prose h3,
+        .prose h4,
+        .prose h5,
+        .prose h6 {
+          font-size: 1.155rem;
+        }
+      }
     </style>
   </head>
-  <body class="h-screen overflow-hidden">
+  <body class="min-h-screen overflow-x-hidden">
     <div class="fixed inset-0 z-0">
       <DotGrid
         client:only
@@ -84,7 +97,7 @@ const sortedEntries = await Promise.all(
     >
       <div
         class="min-h-full w-full px-2 sm:px-8 sm:flex sm:justify-center"
-        style="touch-action: pan-y;"
+        style="touch-action: pan-y pinch-zoom;"
       >
         <div class="w-full sm:max-w-[85ch]">
           <main class="font-['Press_Start_2P']" style="touch-action: auto;">

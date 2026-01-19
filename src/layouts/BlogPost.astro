@@ -3,7 +3,48 @@ import BaseHead from '../components/BaseHead.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import DotGrid from '../components/DotGrid';
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+type RecipeComponent = {
+	title: string;
+	ingredients?: string[];
+	equipment?: string[];
+	steps?: string[];
+	notes?: string[];
+};
+
+type RecipeData = {
+	servings?: string;
+	prepTime?: string;
+	cookTime?: string;
+	totalTime?: string;
+	ingredients?: string[];
+	steps?: string[];
+	equipment?: string[];
+	tags?: string[];
+	notes?: string[];
+	components?: RecipeComponent[];
+};
+
+type BlogPostProps = {
+	title: string;
+	description: string;
+	pubDate: Date;
+	updatedDate?: Date;
+	heroImage?: string;
+	recipe?: RecipeData;
+	backHref?: string;
+	backLabel?: string;
+};
+
+const {
+	title,
+	description,
+	pubDate,
+	updatedDate,
+	heroImage,
+	recipe,
+	backHref = '/blog',
+	backLabel = 'Blog',
+} = Astro.props as BlogPostProps;
 ---
 
 <!doctype html>
@@ -22,20 +63,172 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				pointer-events: none;
 				z-index: 0;
 			}
-		</style>
+			.recipe-card {
+				font-family: 'Press Start 2P', monospace;
+				margin-bottom: 4rem;
+				padding: 2rem;
+				background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(255,247,231,0.92));
+				border: 2px solid #111;
+				box-shadow: 6px 6px 0 #111;
+			}
+			.recipe-card h2,
+			.recipe-card h3 {
+				margin: 0 0 1.5rem;
+				font-size: 0.9rem;
+				letter-spacing: 0.08em;
+			}
+			.recipe-card .recipe-stats {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+			}
+			.recipe-card .recipe-stat {
+				background: rgba(0,0,0,0.05);
+				padding: 1rem;
+				border: 1px solid #ccc;
+				text-transform: uppercase;
+				font-size: 0.6rem;
+				line-height: 1.6;
+			}
+			.recipe-card .recipe-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-bottom: 1.5rem;
+			}
+			.recipe-card .recipe-tag {
+				border: 1px solid #111;
+				padding: 0.4rem 0.6rem;
+				background: #fff;
+				font-size: 0.5rem;
+				letter-spacing: 0.08em;
+			}
+			.recipe-card .recipe-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+				gap: 1.5rem;
+				margin-bottom: 1.5rem;
+			}
+			.recipe-card ul,
+			.recipe-card ol {
+				font-size: 0.7rem;
+				line-height: 1.8;
+				padding-left: 1rem;
+				margin: 0;
+			}
+			.recipe-card ol {
+				counter-reset: steps;
+				list-style: none;
+				padding-left: 0;
+			}
+			.recipe-card ol li {
+				counter-increment: steps;
+				margin-bottom: 1rem;
+				padding-left: 2.5rem;
+				position: relative;
+			}
+			.recipe-card ol li::before {
+				content: counter(steps);
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: #111;
+				color: #fff;
+				width: 1.8rem;
+				height: 1.8rem;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.8rem;
+			}
+			.recipe-card .recipe-notes {
+				border-top: 2px dashed #111;
+				padding-top: 1.5rem;
+				font-size: 0.65rem;
+				line-height: 1.8;
+			}
+			.recipe-components {
+				margin-top: 2rem;
+				border-top: 2px solid #111;
+				padding-top: 1.5rem;
+				display: grid;
+				gap: 1.5rem;
+			}
+			.recipe-subsection {
+				background: rgba(255, 255, 255, 0.9);
+				border: 1px solid #111;
+				padding: 1.5rem;
+				box-shadow: 4px 4px 0 #111;
+			}
+			.recipe-subsection h4 {
+				margin: 0 0 1rem;
+				font-size: 0.8rem;
+				letter-spacing: 0.08em;
+			}
+			.recipe-subsection h5 {
+				margin: 0 0 0.8rem;
+				font-size: 0.65rem;
+				letter-spacing: 0.08em;
+			}
+			.recipe-subsection ul,
+			.recipe-subsection ol {
+				font-size: 0.65rem;
+				line-height: 1.8;
+				padding-left: 1rem;
+				margin: 0 0 1rem;
+			}
+			.recipe-subsection ol {
+				list-style: decimal-leading-zero;
+			}
+			@media (max-width: 640px) {
+				.recipe-card {
+					padding: 1.25rem;
+					margin-bottom: 2.5rem;
+				}
+				.recipe-card h1,
+				.recipe-card h2,
+				.recipe-card h3,
+				.recipe-subsection h4,
+				.recipe-subsection h5 {
+					font-size: 0.85rem;
+				}
+				.recipe-card .recipe-stat {
+					font-size: 0.74rem;
+				}
+				.recipe-card ul,
+				.recipe-card ol,
+				.recipe-subsection ul,
+				.recipe-subsection ol {
+					font-size: 0.89rem;
+					line-height: 1.9;
+				}
+				.prose p {
+					font-size: 1.05rem;
+					line-height: 2;
+				}
+				.prose h1,
+				.prose h2,
+				.prose h3,
+				.prose h4,
+				.prose h5,
+				.prose h6 {
+					font-size: 1.155rem;
+				}
+			}
 		</style>
 	</head>
-	<body class="h-screen overflow-hidden">
+	<body class="min-h-screen overflow-x-hidden">
 		<div class="fixed inset-0 z-0">
-			<DotGrid client:only text="" links={[]} />
+			<DotGrid client:only links={[]} />
 		</div>
 		<div class="absolute inset-0 overflow-auto z-10">
-			<div class="min-h-full w-full px-2 sm:px-8 sm:flex sm:justify-center" style="touch-action: pan-y;">
+			<div class="min-h-full w-full px-2 sm:px-8 sm:flex sm:justify-center" style="touch-action: pan-y pinch-zoom;">
 				<div class="w-full sm:max-w-[85ch]">
-					<article class="bg-white/90 rounded shadow-lg font-['Press_Start_2P'] leading-relaxed p-2 sm:p-8" style="touch-action: auto;">
-					<a href="/blog" class="inline-block mb-12 text-gray-800 text-sm p-2 bg-white/90 rounded transition-all hover:bg-white hover:-translate-y-0.5">← Back to Blog</a>
-				<h1 class="mb-8 pb-6 border-b border-gray-200 text-gray-800 text-lg tracking-wide leading-relaxed">{title}</h1>
-				<div class="mb-12 text-xs text-gray-600">
+				<article class="bg-white/90 rounded shadow-lg font-['Press_Start_2P'] leading-relaxed p-2 sm:p-8" style="touch-action: auto;">
+				<a href={backHref} class="inline-block mb-12 text-gray-800 text-sm p-2 bg-white/90 rounded transition-all hover:bg-white hover:-translate-y-0.5">← Back to {backLabel}</a>
+			<h1 class="mb-8 pb-6 border-b border-gray-200 text-gray-800 text-lg tracking-wide leading-relaxed">{title}</h1>
+			<div class="mb-12 text-xs text-gray-600">
 					<time datetime={pubDate.toISOString()}>
 						{pubDate.toLocaleDateString('en-us', {
 							year: 'numeric',
@@ -56,10 +249,139 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 							</div>
 						)
 					}
-				</div>
-				<div class="prose prose-sm prose-gray max-w-none">
-					<style>
-						.prose {
+			</div>
+			{recipe && (
+				<section class="recipe-card">
+					<h2>Recipe Capsule</h2>
+					<div class="recipe-stats">
+						{recipe.servings && (
+							<div class="recipe-stat">
+								<strong>Servings</strong>
+								<div>{recipe.servings}</div>
+							</div>
+						)}
+						{recipe.prepTime && (
+							<div class="recipe-stat">
+								<strong>Prep</strong>
+								<div>{recipe.prepTime}</div>
+							</div>
+						)}
+						{recipe.cookTime && (
+							<div class="recipe-stat">
+								<strong>Cook</strong>
+								<div>{recipe.cookTime}</div>
+							</div>
+						)}
+						{recipe.totalTime && (
+							<div class="recipe-stat">
+								<strong>Total</strong>
+								<div>{recipe.totalTime}</div>
+							</div>
+						)}
+					</div>
+					{recipe.tags && recipe.tags.length > 0 && (
+						<div class="recipe-tags">
+							{recipe.tags.map((tag: string) => (
+								<span class="recipe-tag">{tag}</span>
+							))}
+						</div>
+					)}
+					<div class="recipe-grid">
+						{recipe.ingredients && recipe.ingredients.length > 0 && (
+							<div>
+								<h3>Ingredients</h3>
+								<ul>
+									{recipe.ingredients.map((item: string) => (
+										<li>{item}</li>
+									))}
+								</ul>
+							</div>
+						)}
+						{recipe.steps && recipe.steps.length > 0 && (
+							<div>
+								<h3>Steps</h3>
+								<ol>
+									{recipe.steps.map((step: string) => (
+										<li>{step}</li>
+									))}
+								</ol>
+							</div>
+						)}
+						{recipe.equipment && recipe.equipment.length > 0 && (
+							<div>
+								<h3>Gear Check</h3>
+								<ul>
+									{recipe.equipment.map((tool: string) => (
+										<li>{tool}</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</div>
+						{recipe.components && recipe.components.length > 0 && (
+							<div class="recipe-components">
+								{recipe.components.map((component: RecipeComponent) => (
+									<div class="recipe-subsection">
+										<h4>{component.title}</h4>
+										{component.ingredients && component.ingredients.length > 0 && (
+											<div>
+												<h5>Ingredients</h5>
+											<ul>
+												{component.ingredients.map((item: string) => (
+													<li>{item}</li>
+												))}
+											</ul>
+										</div>
+									)}
+									{component.steps && component.steps.length > 0 && (
+										<div>
+											<h5>Steps</h5>
+											<ol>
+												{component.steps.map((step: string) => (
+													<li>{step}</li>
+												))}
+											</ol>
+										</div>
+									)}
+									{component.notes && component.notes.length > 0 && (
+										<div>
+											<h5>Notes</h5>
+											<ul>
+												{component.notes.map((note: string) => (
+													<li>{note}</li>
+												))}
+											</ul>
+										</div>
+										)}
+										{component.equipment && component.equipment.length > 0 && (
+											<div>
+												<h5>Equipment</h5>
+												<ul>
+													{component.equipment.map((tool: string) => (
+														<li>{tool}</li>
+													))}
+												</ul>
+											</div>
+										)}
+									</div>
+								))}
+							</div>
+						)}
+					{recipe.notes && recipe.notes.length > 0 && (
+						<div class="recipe-notes">
+							<h3>Notes</h3>
+							<ul>
+								{recipe.notes.map((note: string) => (
+									<li>{note}</li>
+								))}
+							</ul>
+						</div>
+					)}
+				</section>
+			)}
+			<div class="prose prose-sm prose-gray max-w-none">
+				<style>
+					.prose {
 							font-family: 'Press Start 2P', monospace;
 						}
 						.prose p {

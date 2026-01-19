@@ -13,13 +13,12 @@ import DotGrid from "../components/DotGrid";
       rel="stylesheet"
     />
   </head>
-  <body class="h-screen overflow-hidden">
+  <body class="min-h-screen overflow-x-hidden">
     <div class="fixed inset-0 z-0">
       <DotGrid
         client:only
-        preventScroll={true}
         links={[
-          { text: ""},
+          { text: "RECIPES", route: "/recipes" },
           { text: "BLOG", route: "/blog" },
           { text: "CV", route: "/cv" },
         ]}
