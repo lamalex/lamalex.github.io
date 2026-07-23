@@ -20,7 +20,7 @@
 
           shellHook = ''
             export PATH="$PWD/scripts:$PATH"
-            exec fish -c "source ./completions/generate-pdf.fish; echo 'Node '(node --version)' | npm '(npm --version); exec fish"
+            echo "Node $(node --version) | npm $(npm --version)"
           '';
         };
       }
